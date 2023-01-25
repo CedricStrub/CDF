@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="../public/style.css">
+<ul>
+{% for categorie in categories %}
+    <li>{{ categorie.nom }}</li>
+{% endfor %}
+<ul>
+
+{% endblock %}
