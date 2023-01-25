@@ -122,9 +122,12 @@ CREATE TABLE IF NOT EXISTS `session` (
   `place` int(11) NOT NULL,
   `date_debut` datetime NOT NULL,
   `date_fin` datetime NOT NULL,
+  `formation_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_D044D5D4155D8F51` (`formateur_id`),
-  CONSTRAINT `FK_D044D5D4155D8F51` FOREIGN KEY (`formateur_id`) REFERENCES `formateur` (`id`)
+  KEY `IDX_D044D5D45200282E` (`formation_id`),
+  CONSTRAINT `FK_D044D5D4155D8F51` FOREIGN KEY (`formateur_id`) REFERENCES `formateur` (`id`),
+  CONSTRAINT `FK_D044D5D45200282E` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table cdf.session : ~0 rows (environ)

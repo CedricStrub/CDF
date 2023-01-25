@@ -34,6 +34,9 @@ class Session
     #[ORM\ManyToOne]
     private ?Formateur $formateur = null;
 
+    #[ORM\ManyToOne]
+    private ?Formation $formation = null;
+
     public function __construct()
     {
         $this->participer = new ArrayCollection();
@@ -124,6 +127,18 @@ class Session
     public function setFormateur(?Formateur $formateur): self
     {
         $this->formateur = $formateur;
+
+        return $this;
+    }
+
+    public function getFormation(): ?Formation
+    {
+        return $this->formation;
+    }
+
+    public function setFormation(?Formation $formation): self
+    {
+        $this->formation = $formation;
 
         return $this;
     }
