@@ -1,3 +1,163 @@
-.login-ctn {
-    border: 1px;
+:root{
+    --pri: #DD424C;
+    --sec: #EAEAEA;
+    --ter: #1E1E1E;
+    --qua: #363636;
+    --txt-dark: #1E1E1E;
+    --txt-low: #8C8C8C;
+    --txt-high: #FFFFFF;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.login-ctn {
+    top: 250px;
+    left: -200px;
+    position: relative;
+    width: 30vw;
+    height: 600px;
+    background: var(--sec);
+    border: solid 3px;
+    border-color: var(--qua);
+    box-shadow: 2px 4px 4px 0px var(--ter);
+}
+
+.bkg{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex: wrap;
+    flex-direction: row;
+}
+
+.bkg-left{
+    width: 70%;
+    height: 100%;
+    background: var(--ter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bkg-right{
+    width: 30%;
+    height: 100%;
+    background: var(--pri);
+    box-shadow: inset  23px 23px 4px 0 rgb(166, 49, 57),
+                inset  -23px -23px 4px 0 rgba(166, 49, 57);
+}
+
+.cocarde{
+    top: -20px;
+    left: -20px;
+    position: absolute;
+    background: var(--sec);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    z-index: 1;
+    box-shadow: 2px 2px 2px 0 var(--qua);
+}
+
+.cocardeF{
+    top: -10px;
+    left: -10px;
+    position: absolute;
+    background: var(--pri);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+}
+
+.cocardeB{
+    top: -20px;
+    left: -25px;
+    position: absolute;
+    background: var(--txt-low);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    z-index: 0;
+}
+
+.center{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table{
+    width: 100%;
+    padding: 10px;
+}
+
+tr{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.field{
+    width: 350px;
+    height: 50px;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.login-btn{
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+    background: var(--ter);
+    color: var(--txt-high);
+}
+
+.logo{
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 200px;
+    color: var(--pri);
+}
+
+.pres{
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 40px;
+    color: var(--txt-low);
+}
+
+.login-ctn a{
+    color: var(--pri);
+}
+
+.chk{
+    padding-left: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.chk:checked{
+    accent-color: var(--pri);
+}
+
+.pad-txt{
+    padding-left: 20px;
+}
+
+.padT{
+    padding-top: 10px;
+}
+
+.padT2{
+    padding-top: 30px;
+}
+
+.padB{
+    padding-bottom: 30px;
+}
+
