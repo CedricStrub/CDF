@@ -4,6 +4,7 @@
     --ter: #1E1E1E;
     --qua: #363636;
     --txt-dark: #1E1E1E;
+    --txt: #363636;
     --txt-low: #8C8C8C;
     --txt-high: #FFFFFF;
 }
@@ -23,6 +24,9 @@
     border: solid 3px;
     border-color: var(--qua);
     box-shadow: 2px 4px 4px 0px var(--ter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bkg{
@@ -85,40 +89,6 @@
     z-index: 0;
 }
 
-.center{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-table{
-    width: 100%;
-    padding: 10px;
-}
-
-tr{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.field{
-    width: 350px;
-    height: 50px;
-    padding-left: 20px;
-    font-size: 18px;
-}
-
-.login-btn{
-    width: 350px;
-    height: 50px;
-    font-size: 30px;
-    background: var(--ter);
-    color: var(--txt-high);
-}
-
 .logo{
     font-family: 'Black Han Sans', sans-serif;
     font-size: 200px;
@@ -131,33 +101,40 @@ tr{
     color: var(--txt-low);
 }
 
-.login-ctn a{
+.title {
+    text-align: center;
+    padding: 50px;
+    color: var(--txt);
+}
+
+.alert {
     color: var(--pri);
 }
 
-.chk{
-    padding-left: 20px;
-    width: 20px;
-    height: 20px;
+.field{
+    width: 100%;
+    height: 50px;
+
+    font-size: 18px;
 }
 
-.chk:checked{
-    accent-color: var(--pri);
+.s{
+    width: 100%;
+    height: 50px;
 }
 
-.pad-txt{
-    padding-left: 20px;
-}
-
-.padT{
-    padding-top: 10px;
-}
-
-.padT2{
+.ctn-field{
     padding-top: 30px;
 }
 
-.padB{
-    padding-bottom: 30px;
+.cfL{
+    float: left;
 }
 
+.cfR{
+    float: right;
+}
+
+.login-ctn a{
+    color: var(--pri);
+}

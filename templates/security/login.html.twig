@@ -20,15 +20,31 @@
         <div class="cocardeF"></div>
         <div class="cocardeB"></div>
         <form method="post">
+
+            <span class="title"><h1 class="h3 mb-3 font-weight-normal center"><br><br>Connexion au service CDF<br><br></h1></span>
+
+
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
+            
+            <div class="field"><input class="center field" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail" autocomplete="email" required autofocus></div>
+
+            <div class="s"></div>
+
+            <div class="field"><input class="center field" type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required><br></div>
+            
+            <div class="ctn-field">
+                <div class="cfL"> <input type="checkbox" id="remember" name="rem" value="rem" class="chk">Se souvenir de moi</div>
+                <div class="cfR" > <a href="{{ path('app_forgot_password_request') }}">mot de passe oublié ?</a></div>
+            </div>
+            <!--
             <table>
                 <tr>
                     <td colspan="2"><br><h1 class="h3 mb-3 font-weight-normal center"><br>Connexion au service CDF</h1><br><br><br><br></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input class="center field" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Pseudo ou E-mail" autocomplete="email" required autofocus><br><br></td>
+                    <td colspan="2"><input class="center field" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail" autocomplete="email" required autofocus><br><br></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input class="center field" type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required><br></td>
@@ -50,6 +66,7 @@
                     <td colspan="2"  class="center padT2"><div class="">Un problème avec votre compte ? <a href="">Contact</a></div></td>
                 </tr>
             </table>
+            -->
         </form>
     </div>
 </div>

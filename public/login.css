@@ -1,0 +1,66 @@
+
+
+.center{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table{
+    width: 100%;
+    padding: 10px;
+}
+
+tr{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.field{
+    width: 350px;
+    height: 50px;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.login-btn{
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+    background: var(--ter);
+    color: var(--txt-high);
+}
+
+.login-ctn a{
+    color: var(--pri);
+}
+
+.chk{
+    padding-left: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.chk:checked{
+    accent-color: var(--pri);
+}
+
+.pad-txt{
+    padding-left: 20px;
+}
+
+.padT{
+    padding-top: 10px;
+}
+
+.padT2{
+    padding-top: 30px;
+}
+
+.padB{
+    padding-bottom: 30px;
+}
+
