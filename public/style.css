@@ -114,7 +114,6 @@
 .field{
     width: 100%;
     height: 50px;
-
     font-size: 18px;
 }
 
@@ -125,6 +124,17 @@
 
 .ctn-field{
     padding-top: 30px;
+}
+
+.f-pad{
+    padding-left: 30px;
+}
+
+.btn{
+    margin-top: 30px;
+    background: var(--ter);
+    color: var(--sec);
+    font-size: 35px;
 }
 
 .cfL{
