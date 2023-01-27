@@ -21,23 +21,32 @@
         <div class="cocardeB"></div>
         <form method="post">
 
-            <span class="title"><h1 class="h3 mb-3 font-weight-normal center"><br><br>Connexion au service CDF<br><br></h1></span>
+            <span class="title"><h1 class="h3 mb-3 font-weight-normal center">Connexion au service CDF<br><br></h1></span>
 
 
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
             
-            <div class="field"><input class="center field" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail" autocomplete="email" required autofocus></div>
+            <div class="field"><input class="field f-pad" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail" autocomplete="email" required autofocus></div>
 
             <div class="s"></div>
 
-            <div class="field"><input class="center field" type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required><br></div>
+            <div class="field"><input class="field f-pad" type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required><br></div>
             
             <div class="ctn-field">
                 <div class="cfL"> <input type="checkbox" id="remember" name="rem" value="rem" class="chk">Se souvenir de moi</div>
                 <div class="cfR" > <a href="{{ path('app_forgot_password_request') }}">mot de passe oublié ?</a></div>
             </div>
+
+            <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}">
+
+            <div class="field"><button class="btn btn-lg btn-primary field" type="submit">
+                Connexion
+            </button></div>
+
+            
             <!--
             <table>
                 <tr>
