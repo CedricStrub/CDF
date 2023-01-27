@@ -3,6 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+
 <div class="bkg">
     <div class="bkg-left">
         <div class="logo-ctn">
@@ -34,7 +35,7 @@
                 </tr>
                 <tr>
                     <td class="center padT padB"><input type="checkbox" id="remember" name="rem" value="rem" class="chk"><div class="pad-txt">Se souvenir de moi</div></td>
-                    <td class="center padT padB"><div> <a href="">mot de passe oublié ?</a></div></td>
+                    <td class="center padT padB"><div> <a href="{{ path('app_forgot_password_request') }}">mot de passe oublié ?</a></div></td>
                 </tr>
                 <tr>
                 <br>
