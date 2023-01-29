@@ -9,8 +9,7 @@
         <div class="logo-ctn">
             <div class="logo">CDF</div>
             <div class="pres"> <p> Centre De Formation : </p>
-                <p> Developpement ... Web... Logiciel<br> 
-                    ... Mobile ... Sécurité ... </p>
+                <p> Developpement ... Web ... Logiciel ... Mobile ... Sécurité ... </p>
             </div>
         </div>
     </div>
@@ -28,23 +27,25 @@
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
             
-            <div class="field"><input class="field f-pad" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail" autocomplete="email" required autofocus></div>
+            <div class="field"><input class="field" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail" autocomplete="email" required autofocus></div>
 
             <div class="s"></div>
 
-            <div class="field"><input class="field f-pad" type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required><br></div>
+            <div class="field"><input class="field" type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required><br></div>
             
             <div class="ctn-field">
-                <div class="cfL"> <input type="checkbox" id="remember" name="rem" value="rem" class="chk">Se souvenir de moi</div>
+                <div class="cfL"> <input type="checkbox" id="remember" name="rem" value="rem" class="chk"> Se souvenir de moi</div>
                 <div class="cfR" > <a href="{{ path('app_forgot_password_request') }}">mot de passe oublié ?</a></div>
             </div>
 
             <input type="hidden" name="_csrf_token"
                     value="{{ csrf_token('authenticate') }}">
 
-            <div class="field"><button class="btn btn-lg btn-primary field" type="submit">
+            <div class="field"><button class="btn btn-lg btn-primary " type="submit">
                 Connexion
             </button></div>
+
+            <div class="f-pad contact">Un problème avec votre compte ? <a href="">Contact</a></div>
 
             
             <!--
@@ -66,7 +67,6 @@
                 <br>
                 <input type="hidden" name="_csrf_token"
                     value="{{ csrf_token('authenticate') }}">
-
                     <td colspan="2"><button class="btn btn-lg btn-primary center login-btn" type="submit">
                     Connexion
                 </button></td>
@@ -76,6 +76,7 @@
                 </tr>
             </table>
             -->
+
         </form>
     </div>
 </div>
