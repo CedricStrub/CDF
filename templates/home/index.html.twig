@@ -4,12 +4,142 @@
 
 {% block body %}
 <link rel="stylesheet" href={{ asset("/home.css") }}>
-
-    <div class ="home">
-        <div class="ctn1"><div class="cadre">Bonjour </div></div>
-        <div class="ctn2"><div class="cadre">Prenom</div></div>
-        <div class="ctn-tab"></div>
+<div class ="home">
+    <div class="ctn1"><div class="cadre">Bonjour </div></div>
+    <div class="ctn2"><div class="cadre">{{ app.user.email }}</div></div>
+    <div class="ctn-tab">
+        <div class="cadre-tab">
+            <div class="titre">Planing</div>
+            <div class="plan">
+                <table>
+                    <thead>
+                        <td>Lundi</td>
+                        <td>Mardi</td>
+                        <td>Mercredi</td>
+                        <td>Jeudi</td>
+                        <td>Vendredi</td>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    <div class="ctn-tab">
+        <div class="cadre-tab">
+            <div class="titre">Session à venir</div>
+            <div class="tab">
+                <table>
+                    <thead>
+                        <td>Statut</td>
+                        <td>Formation</td>
+                        <td>Session</td>
+                        <td>Date de début</td>
+                        <td>Date de fin</td>
+                        <td>Inscrit</td>
+                        <td>Action</td>
+                    </thead>
+                    <tbody>
+                        {% for session in sessions %}
+                        <tr>
+                            <td>En cours</td>
+                            <td>{{ session.formation.intitule }}</td>
+                            <td>{{ session.intitule }}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ session.place }}</td>
+                            <td>action</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+     <div class="ctn-tab">
+        <div class="cadre-tab">
+            <div class="titre">Session en cours</div>
+            <div class="tab">
+                <table>
+                    <thead>
+                        <td>Statut</td>
+                        <td>Formation</td>
+                        <td>Session</td>
+                        <td>Date de début</td>
+                        <td>Date de fin</td>
+                        <td>Inscrit</td>
+                        <td>Action</td>
+                    </thead>
+                    <tbody>
+                        {% for session in sessions %}
+                        <tr>
+                            <td>En cours</td>
+                            <td>{{ session.formation.intitule }}</td>
+                            <td>{{ session.intitule }}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ session.place }}</td>
+                            <td>action</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+     <div class="ctn-tab">
+        <div class="cadre-tab">
+            <div class="titre">Session passé</div>
+            <div class="tab">
+                <table>
+                    <thead>
+                        <td>Statut</td>
+                        <td>Formation</td>
+                        <td>Session</td>
+                        <td>Date de début</td>
+                        <td>Date de fin</td>
+                        <td>Inscrit</td>
+                        <td>Action</td>
+                    </thead>
+                    <tbody>
+                        {% for session in sessions %}
+                        <tr>
+                            <td>En cours</td>
+                            <td>{{ session.formation.intitule }}</td>
+                            <td>{{ session.intitule }}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ session.place }}</td>
+                            <td>action</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
     <!--
     <div class="mb-3">
         Vous etes connecté en tant que : {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>

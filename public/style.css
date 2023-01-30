@@ -7,6 +7,8 @@
     --txt: #363636;
     --txt-low: #8C8C8C;
     --txt-high: #FFFFFF;
+    --tab-high: rgba(255, 255, 255, 0.05);
+    --tab-brd: #5B5B5B;
 }
 
 * {
