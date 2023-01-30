@@ -1,0 +1,138 @@
+.logo{
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 100px;
+    color: var(--pri);
+    text-align: center;
+}
+
+.logo a{
+    color: var(--ter);
+    text-decoration: none;
+}
+
+.logo a:hover {
+    color: var(--ter);
+}
+
+.sidebar {
+    height: 100%;
+    width: 310px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--pri);
+    overflow-x: hidden;
+    padding-top: 16px;
+    box-shadow: inset  23px 23px 4px 0 rgb(166, 49, 57),
+                inset  -23px -23px 4px 0 rgba(166, 49, 57);
+}
+
+.btn{
+    width: calc(100% - 6px);
+    height: 75px;
+    background: var(--ter);
+    border: solid 3px;
+    border-color: var(--qua);
+    box-shadow: 0px 5px 7px 0px var(--ter);
+    margin-bottom: 25px;
+}
+
+.portrait-ctn{
+    width: calc(100% - 6px);
+    height: 200px;
+    position: relative;
+}
+
+.portrait{
+    left: 15px;
+    width: 130px;
+    height: 160px;
+    background: var(--sec);
+    border: solid 2px;
+    border-color: var(--ter);
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0px 2px 3px 0px var(--ter);
+}
+
+.portrait-txt{
+    position: absolute;
+    color: var(--qua);
+    font-size: 20px;
+}
+
+.pos1{
+    left: 165px;
+    top: 20px;
+}
+
+.pos2{
+    left: 165px;
+    top: 50px;
+}
+
+.btn-alt{
+    top: 100px;
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    background: var(--qua);
+    border: solid 3px;
+    border-color: var(--ter);
+    box-shadow: 0px 5px 7px 0px var(--ter);
+}
+
+.icon{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 200px;
+    top: 5px;
+    filter: invert(39%) sepia(17%) saturate(3854%) hue-rotate(318deg) brightness(93%) contrast(99%);
+    cursor: pointer;
+}
+
+.icon:hover{
+    filter: invert(98%) sepia(0%) saturate(171%) hue-rotate(7deg) brightness(115%) contrast(84%);
+}
+
+.icon-txt{
+    position: absolute;
+    left: 180px;
+    top: 55px;
+    color: var(--pri);
+}
+
+.btn-admin{
+    width: calc(100% - 6px);
+    height: 75px;
+    background: var(--qua);
+    border: solid 3px;
+    border-color: var(--pri);
+    margin-top: 15px;
+}
+
+.lien a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 40px;
+    line-height: 65px;
+    color: var(--txt-low);
+    display: block;
+}
+
+.btn-admin a{
+    color: var(--pri);
+}
+
+.lien a:hover {
+    color: var(--txt-high);
+}
+
+.main {
+    margin-left: 300px; /* Même que la width de .sidebar */
+    padding: 0px 10px;
+}

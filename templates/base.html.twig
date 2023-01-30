@@ -19,6 +19,34 @@
         {% endblock %}
     </head>
     <body>
+        {% if app.user %}
+        <link rel="stylesheet" href={{ asset("/nav-bar.css") }}>
+        <div class="sidebar">
+            <div class="logo">
+                <a href="{{ path('app_home') }}">CDF</a>
+            </div>
+            <div class="lien">
+                <div class="btn"><a href="{{ path('app_formation') }}">Formation</a></div>
+                <div class="btn"><a href="{{ path('app_session') }}">Session</a></div>
+                <div class="btn"><a href="{{ path('app_stagiaire') }}">Stagiaire</a></div>
+                <div class="btn"><a href="{{ path('app_formateur') }}">Formateur</a></div>
+                <div class="btn"><a href="{{ path('app_module') }}">Module</a></div>
+                <div class="portrait-ctn">
+                    <div class="portrait"></div>
+                    <span class="portrait-txt pos1">Nom</span>
+                    <span class="portrait-txt pos2">Prénom</span>
+                    <div class="btn-alt"><a href="{{ path('app_logout') }}"><img class="icon" src="{{ asset("/logout.png") }}" ></a>
+                    <span class="icon-txt">Deconnexion</span>
+                    </div>
+                </div>
+                <div class="btn-admin"><a href="">Administration</a></div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="main">
         {% block body %}{% endblock %}
+        </div>
+        
     </body>
 </html>

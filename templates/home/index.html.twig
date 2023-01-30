@@ -3,13 +3,17 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href={{ asset("/home.css") }}>
 
-{% if app.user %}
-
+    <div class ="home">
+        <div class="ctn1"><div class="cadre">Bonjour </div></div>
+        <div class="ctn2"><div class="cadre">Prenom</div></div>
+        <div class="ctn-tab"></div>
+    </div>
+    <!--
     <div class="mb-3">
         Vous etes connecté en tant que : {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
     </div>
-
-{% endif %}
+    -->
 
 {% endblock %}

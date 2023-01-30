@@ -1,41 +1,143 @@
-
-
-.center{
-    width: 100%;
+.login-ctn {
+    top: 250px;
+    left: -200px;
+    position: relative;
+    width: 30vw;
+    height: 600px;
+    background: var(--sec);
+    border: solid 3px;
+    border-color: var(--qua);
+    box-shadow: 2px 4px 4px 0px var(--ter);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-table{
-    width: 100%;
-    padding: 10px;
+.bkg{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex: wrap;
+    flex-direction: row;
 }
 
-tr{
+.bkg-left{
+    width: 70%;
+    height: 100%;
+    background: var(--ter);
     display: flex;
-    width: 100%;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.bkg-right{
+    width: 30%;
+    height: 100%;
+    background: var(--pri);
+    box-shadow: inset  23px 23px 4px 0 rgb(166, 49, 57),
+                inset  -23px -23px 4px 0 rgba(166, 49, 57);
+}
+
+.cocarde{
+    top: -20px;
+    left: -20px;
+    position: absolute;
+    background: var(--sec);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    z-index: 1;
+    box-shadow: 2px 2px 2px 0 var(--qua);
+}
+
+.cocardeF{
+    top: -10px;
+    left: -10px;
+    position: absolute;
+    background: var(--pri);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+}
+
+.cocardeB{
+    top: -20px;
+    left: -25px;
+    position: absolute;
+    background: var(--txt-low);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    z-index: 0;
+}
+
+.logo-ctn{
+    width: 55%;
+}
+
+.logo{
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 200px;
+    color: var(--pri);
+}
+
+.pres{
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 40px;
+    color: var(--txt-low);
+}
+
+.title {
+    text-align: center;
+    padding: 50px;
+    color: var(--txt);
+}
+
+.alert {
+    color: var(--pri);
 }
 
 .field{
-    width: 350px;
+    width: calc(100% - 15px);
     height: 50px;
-    padding-left: 20px;
     font-size: 18px;
 }
 
-.login-btn{
-    width: 350px;
-    height: 50px;
-    font-size: 30px;
-    background: var(--ter);
-    color: var(--txt-high);
+.field input{
+    padding-left: 30px;
 }
 
-.login-ctn a{
-    color: var(--pri);
+
+.s{
+    width: 100%;
+    height: 50px;
+}
+
+.ctn-field{
+    margin-top: 30px;
+}
+
+.f-pad{
+    padding-left: 30px;
+}
+
+.btn{
+    width: calc(100% + 15px);
+    height: 50px;
+    margin-top: 30px;
+    background: var(--ter);
+    color: var(--sec);
+    font-size: 35px;
+}
+
+.cfL{
+    float: left;
+}
+
+.cfR{
+    float: right;
 }
 
 .chk{
@@ -48,19 +150,10 @@ tr{
     accent-color: var(--pri);
 }
 
-.pad-txt{
-    padding-left: 20px;
+.login-ctn a{
+    color: var(--pri);
 }
 
-.padT{
-    padding-top: 10px;
+.contact{
+    margin-top: 70px;
 }
-
-.padT2{
-    padding-top: 30px;
-}
-
-.padB{
-    padding-bottom: 30px;
-}
-

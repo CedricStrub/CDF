@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-
+<link rel="stylesheet" href={{ asset("/login.css") }}>
 <div class="bkg">
     <div class="bkg-left">
         <div class="logo-ctn">
@@ -46,36 +46,6 @@
             </button></div>
 
             <div class="f-pad contact">Un problème avec votre compte ? <a href="">Contact</a></div>
-
-            
-            <!--
-            <table>
-                <tr>
-                    <td colspan="2"><br><h1 class="h3 mb-3 font-weight-normal center"><br>Connexion au service CDF</h1><br><br><br><br></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input class="center field" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail" autocomplete="email" required autofocus><br><br></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input class="center field" type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required><br></td>
-                </tr>
-                <tr>
-                    <td class="center padT padB"><input type="checkbox" id="remember" name="rem" value="rem" class="chk"><div class="pad-txt">Se souvenir de moi</div></td>
-                    <td class="center padT padB"><div> <a href="{{ path('app_forgot_password_request') }}">mot de passe oublié ?</a></div></td>
-                </tr>
-                <tr>
-                <br>
-                <input type="hidden" name="_csrf_token"
-                    value="{{ csrf_token('authenticate') }}">
-                    <td colspan="2"><button class="btn btn-lg btn-primary center login-btn" type="submit">
-                    Connexion
-                </button></td>
-                </tr>
-                <tr>
-                    <td colspan="2"  class="center padT2"><div class="">Un problème avec votre compte ? <a href="">Contact</a></div></td>
-                </tr>
-            </table>
-            -->
 
         </form>
     </div>
