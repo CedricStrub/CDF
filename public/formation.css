@@ -39,7 +39,7 @@ body{
 .titre{
     background: var(--qua);
     padding-bottom: 20px;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 600;
     color: var(--txt-low);
 }
@@ -52,7 +52,7 @@ body{
 }
 
 .search .bar{
-    width: 80%;
+    width: 100%;
     border: solid 1px;
     border-color: var(--tab-brd);
     color: var(--tab-brd);
@@ -72,4 +72,63 @@ body{
     font-size: 30px;
     line-height: 70px;
     font-weight: 600;
+}
+
+.ctn-tab{
+    width: calc(100% - 40px);
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--qua);
+    box-shadow: 0px 0px 5px 3px black;
+    caret-color: transparent;
+}
+
+.cadre-tab{
+    width: 100%;
+    height: fit-content;
+    background: var(--qua);
+    font-size: 30px;
+    color: var(--txt-high);
+    caret-color: transparent;
+}
+
+.ctn-tab .titre{
+    color: var(--txt-low);
+    font-size: 40px;
+    padding-bottom: 20px;
+}
+
+table{
+    width: 100%;
+    border: solid 1px;
+    border-color: var(--txt-low);
+    border-collapse: collapse;
+    box-shadow: 0px 0px 2px 2px var(--ter);
+}
+
+td{
+    padding: 5px;
+    border: solid 1px;
+    border-color: var(--tab-brd);
+}
+
+thead{
+    color: var(--ter);
+    font-weight: 800;
+    background: var(--tab-high);
+}
+
+tbody{
+    font-size: 25px;
+}
+
+.plan tbody td{
+    height: 150px;
+    width: 20%;
+}
+
+#form_formation{
+    background: var(--qua);
+    width: 500px;
+    height: 100px;
 }

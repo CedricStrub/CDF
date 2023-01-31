@@ -46,7 +46,7 @@
     padding: 20px;
 }
 
-.titre{
+.ctn-tab .titre{
     color: var(--txt-low);
     font-size: 40px;
 }

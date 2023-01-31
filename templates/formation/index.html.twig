@@ -11,18 +11,19 @@
     </div>
     <div class="search-ctn">
         <div class="titre">Recherche</div>
+        {{ form_start(form) }}
         <div class="search">
-            <div class="bar">Intitulé</div>
-            <div class="bouton">GO</div>
+            {{ form_row(form.formation, {'label':false})}}
         </div>
+        {{ form_end(form) }}
     </div>
     <div class="ctn-tab">
         <div class="cadre-tab">
-            <div class="titre">Session en cours</div>
+            <div class="titre">Formation en cours</div>
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Intitule</td>
+                        <td>Intitulé</td>
                         <td>nb Sessions</td>
                         <td>nb Modules</td>
                         <td>Durée Total</td>
@@ -30,21 +31,20 @@
                         <td>Progression</td>
                     </thead>
                     <tbody>
+                    {% for formation in formations %}
                         <tr>
-                            <td></td>
-                            <td></td>
+                            <td>{{ formation }}</td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
-            
         </div>
-        
     </div>
 </div>
 
