@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail Formation{% endblock %}
+
+{% block body %}
+
+{{ formation.intitule }} <br>
+
+<br>
+
+{% for session in sessions %}
+
+    {{ session.intitule }} <br>
+
+    {{ dump(stagiaires) }} <br>
+    
+
+{% endfor %}
+
+{% endblock %}

@@ -98,6 +98,7 @@ class Session
     /**
      * @return Collection<int, Stagiaire>
      */
+    
     public function getParticiper(): Collection
     {
         return $this->participer;
