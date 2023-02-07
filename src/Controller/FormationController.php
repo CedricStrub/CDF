@@ -2,18 +2,17 @@
 
 namespace App\Controller;
 
-use doctrine;
 use App\Entity\Session;
 use App\Entity\Formation;
 use App\Entity\Modules;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
-use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class FormationController extends AbstractController
 {
@@ -43,12 +42,18 @@ class FormationController extends AbstractController
             $dateD = $date;
             $dateF = $date;
             $progression = 0;
+            $stagiaires = [];
 
             foreach($sessions as $session){
                 $modules = $doctrine->getRepository(Programme::class)->findBy(['session' => $session->getId()]);
+
                 if($session->getPlace() < $places){
                     $places = $session->getPlace();
                 }
+
+                $stagiaire = $session->getParticiper()->toArray();
+                $stagiaires []= $stagiaire;
+
                 foreach($modules as $module){
                     $dureeTotal += $module->getDuree();
                     if($dateD < $session->getDateDebut()){
@@ -60,6 +65,8 @@ class FormationController extends AbstractController
 
                 }
             }
+
+            $ctnStagiaire = $places - count($stagiaire);
 
             
             if($dateD > $date){
@@ -75,7 +82,8 @@ class FormationController extends AbstractController
                 'nbSession' => $sessions,
                 'nbModules' => $modules,
                 'duree' => $dureeTotal,
-                'places' => $places,
+                'placesV' => $ctnStagiaire,
+                'placesT' => $places,
                 'progression' => $progression,
             ];
 
@@ -91,6 +99,7 @@ class FormationController extends AbstractController
         ]);
     }
 
+
     #[Route('/formation/{id}', name:'show_formation')]
     public function show(Formation $formation, ManagerRegistry $doctrine, $id= null): Response
     {
@@ -98,19 +107,86 @@ class FormationController extends AbstractController
 
         $sessions = $doctrine->getRepository(Session::class)->findBy(['formation' => $formation->getId()]);
 
+        $dureeTotal = 0;
+        $places = 100;
+        $date = new \DateTime();
+        $dateD = $date;
+        $dateF = $date;
+        $progression = 0;
         $stagiaires = [];
 
-        foreach ($sessions as $session){
+        foreach($sessions as $session){
+            $modules = $doctrine->getRepository(Programme::class)->findBy(['session' => $session->getId()]);
+
+            if($session->getPlace() < $places){
+                $places = $session->getPlace();
+            }
+
             $stagiaire = $session->getParticiper()->toArray();
             $stagiaires []= $stagiaire;
+
+            foreach($modules as $module){
+                $dureeTotal += $module->getDuree();
+                if($dateD > $session->getDateDebut()){
+                    $dateD = $session->getDateDebut();
+                }
+                if($dateF > $session->getDateFin()){
+                    $dateF = $session->getDateFin();
+                }
+            }
         }
+
+        $ctnStagiaire = $places - count($stagiaire);
+
+        
+        if($dateD > $date){
+            $percent = (($date->diff($dateD)->d) + ($dateF->diff($date)->d)) / 100;
+
+            $progression = ($date->diff($dateD)->d) / $percent;
+        }
+
+        $modulesC = count($modules);
+        $sessionsC = count($sessions);
+
+        $data = [
+            'nbSession' => $sessionsC,
+            'nbModules' => $modulesC,
+            'duree' => $dureeTotal,
+            'dateDebut' => $dateD->format('d/m/y'),
+            'dateFin' => $dateF->format('d/m/y'),
+            'placesV' => $ctnStagiaire,
+            'placesT' => $places,
+            'progression' => $progression,
+        ];
+
+        $formStagiaire = $this->createFormBuilder()
+            ->add('stagiaire', EntityType::class,[
+                'class' => Stagiaire::class,
+                'autocomplete' => true,
+                'placeholder' => 'Prenom - Nom',
+                'attr' => ['class' => 'bar' ]
+            ])
+            ->getForm()
+        ;
+
+        $formSession = $this->createFormBuilder()
+            ->add('session', EntityType::class,[
+                'class' => Session::class,
+                'autocomplete' => true,
+                'placeholder' => 'Intitulé',
+                'attr' => ['class' => 'bar' ]
+            ])
+            ->getForm()
+        ;
+
 
         return $this->render('formation/show.html.twig',[
             'formation' => $formation,
             'sessions' => $sessions,
             'stagiaires'=> $stagiaires,
+            'data' => $data,
+            'formSt' => $formStagiaire->createView(),
+            'formSe' => $formSession->createView(),
         ]);
     }
-
-
 }

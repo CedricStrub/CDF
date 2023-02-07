@@ -4,17 +4,64 @@
 
 {% block body %}
 
-{{ formation.intitule }} <br>
+<h1>{{ formation.intitule }}</h1><br>
+{{ data.duree }} <br>
+{{ data.dateDebut }} <br>
+{{ data.dateFin }} <br>
+{{ data.placesV }} <br>
+{{ data.placesT }} <br>
+{{ data.progression }} <br>
 
 <br>
+<h2>Sessions</h2>
+<br>
+<table>
+    <thead>
+        <td>Intitulé</td>
+        <td>Places</td>
+        <td>Durée </td>
+        <td>Action</td>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <td>{{ session.intitule }}</td>
+            <td>{{ session.place }}</td>
+            <td>{{ session.duree }} Jours</td>
+            <td><a href="{{ path('remove_session', {'session': session.id,'route': 'show_formation'}) }}">Déprogrammer</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
-{% for session in sessions %}
+{{ form_start(formSe.session) }}
+<div class="search">
+    {{ form_row(formSe.session, {'label':false})}}
+</div>
+{{ form_end(formSe.session) }}
 
-    {{ session.intitule }} <br>
+<br>
+<h2>Stagiaires</h2>
+<br>
+<table>
+    <thead>
+        <td>Stagiaire</td>
+        <td>Action</td>
+    </thead>
+    <tbody>
+        {% for stagiaire in stagiaires[0] %}
+        <tr>
+            <td>{{ stagiaire.nom }}{{ stagiaire.prenom }}</td>
+            <td><a href="{{ path('remove_stagiaire', {'stagiaire': stagiaire.id,'session': sessions[0].id,'route': 'show_formation'}) }}">Désinscrire</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
-    {{ dump(stagiaires) }} <br>
-    
-
-{% endfor %}
+{{ form_start(formSt.stagiaire) }}
+<div class="search">
+    {{ form_row(formSt.stagiaire, {'label':false})}}
+</div>
+{{ form_end(formSt.stagiaire) }}
 
 {% endblock %}

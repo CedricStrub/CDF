@@ -37,8 +37,8 @@
                             <td><a href="{{ path('show_formation', {'id': formation.id }) }}">{{ formation }}</a></td>
                             <td>{{ data[i].nbSession }}</td>
                             <td>{{ data[i].nbModules }}</td>
-                            <td>{{ data[i].duree }}</td>
-                            <td>{{ data[i].places }}</td>
+                            <td>{{ data[i].duree }} Jours</td>
+                            <td>{{ data[i].placesV }} / {{ data[i].placesT }}</td>
                             <td>{{ data[i].progression }}</td>
                         </tr>
                         {% set i = i + 1 %}

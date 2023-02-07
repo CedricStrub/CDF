@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\SessionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SessionRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
@@ -95,6 +96,23 @@ class Session
         return $this;
     }
 
+    public function getDuree(): ?string
+    {
+        $duree = date_diff($this->getDateFin(),$this->getDateDebut());
+        return $duree->days;
+    }
+
+    public function addSession(ManagerRegistry $doctrine,Session $session): self
+    {
+        $em = $doctrine->getManager();
+        $$session = new Session($session);
+        $em->persist($session);
+        $em->flush();
+
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Stagiaire>
      */
@@ -143,4 +161,10 @@ class Session
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->intitule;
+    }
+
 }

@@ -126,7 +126,7 @@ class Stagiaire
 
     public function __toString()
     {
-        return $this->prenom;
+        return $this->prenom." - ".$this->nom;
     }
 
 }

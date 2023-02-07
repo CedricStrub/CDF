@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table cdf.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table cdf.doctrine_migration_versions : ~0 rows (environ)
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20230125083742', '2023-01-25 08:38:54', 1146);
@@ -156,10 +156,45 @@ CREATE TABLE IF NOT EXISTS `programme` (
   KEY `IDX_3DDCB9FF613FECDF` (`session_id`),
   CONSTRAINT `FK_3DDCB9FF613FECDF` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`),
   CONSTRAINT `FK_3DDCB9FFAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `modules` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table cdf.programme : ~0 rows (environ)
+-- Listage des données de la table cdf.programme : ~37 rows (environ)
 /*!40000 ALTER TABLE `programme` DISABLE KEYS */;
+INSERT INTO `programme` (`id`, `module_id`, `session_id`, `duree`) VALUES
+	(21, 1, 7, 4),
+	(22, 2, 7, 5),
+	(23, 3, 8, 3),
+	(24, 4, 8, 4),
+	(25, 5, 9, 5),
+	(26, 6, 9, 6),
+	(27, 7, 10, 7),
+	(28, 8, 10, 8),
+	(29, 9, 11, 9),
+	(30, 10, 11, 10),
+	(31, 1, 12, 2),
+	(32, 2, 12, 3),
+	(33, 3, 13, 4),
+	(35, 5, 14, 6),
+	(36, 6, 14, 7),
+	(37, 7, 15, 8),
+	(38, 8, 15, 9),
+	(40, 10, 16, 11),
+	(41, 6, 7, 5),
+	(43, 2, 9, 7),
+	(44, 9, 10, 2),
+	(45, 4, 11, 3),
+	(46, 8, 12, 4),
+	(48, 7, 14, 6),
+	(49, 6, 15, 7),
+	(50, 10, 16, 8),
+	(52, 2, 8, 10),
+	(53, 3, 9, 11),
+	(54, 4, 10, 12),
+	(55, 5, 11, 13),
+	(56, 6, 12, 14),
+	(57, 7, 13, 15),
+	(58, 8, 14, 16),
+	(60, 10, 16, 18);
 /*!40000 ALTER TABLE `programme` ENABLE KEYS */;
 
 -- Listage de la structure de la table cdf. reset_password_request
@@ -193,9 +228,9 @@ CREATE TABLE IF NOT EXISTS `session` (
   KEY `IDX_D044D5D45200282E` (`formation_id`),
   CONSTRAINT `FK_D044D5D4155D8F51` FOREIGN KEY (`formateur_id`) REFERENCES `formateur` (`id`),
   CONSTRAINT `FK_D044D5D45200282E` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table cdf.session : ~10 rows (environ)
+-- Listage des données de la table cdf.session : ~20 rows (environ)
 /*!40000 ALTER TABLE `session` DISABLE KEYS */;
 INSERT INTO `session` (`id`, `formateur_id`, `intitule`, `place`, `date_debut`, `date_fin`, `formation_id`) VALUES
 	(7, 1, 'Introduction à la programmation orientée objet en C++', 22, '2022-01-01 00:00:00', '2022-07-01 00:00:00', 1),
@@ -207,7 +242,17 @@ INSERT INTO `session` (`id`, `formateur_id`, `intitule`, `place`, `date_debut`, 
 	(13, 8, 'Virtualisation avec VMware', 22, '2023-03-01 00:00:00', '2023-09-01 00:00:00', 4),
 	(14, 9, 'Conception de bases de données avec SQL', 28, '2023-05-01 00:00:00', '2023-11-01 00:00:00', 5),
 	(15, 10, 'Administration de bases de données avec Oracle', 29, '2023-07-01 00:00:00', '2023-01-01 00:00:00', 5),
-	(16, 11, 'Apprentissage automatique avec Python', 25, '2023-09-01 00:00:00', '2024-03-01 00:00:00', 6);
+	(16, 11, 'Apprentissage automatique avec Python', 25, '2023-09-01 00:00:00', '2024-03-01 00:00:00', 6),
+	(27, 1, 'Advanced Web Development', 22, '2022-07-01 00:00:00', '2023-01-01 00:00:00', 7),
+	(28, 1, 'Data Structures and Algorithms', 25, '2022-07-15 00:00:00', '2023-01-15 00:00:00', 8),
+	(29, 3, 'Database Management', 26, '2022-08-01 00:00:00', '2023-02-01 00:00:00', 9),
+	(30, 4, 'Machine Learning with Python', 27, '2022-08-15 00:00:00', '2023-02-15 00:00:00', 10),
+	(31, 4, 'Intro to Front-End Development', 24, '2022-09-01 00:00:00', '2023-03-01 00:00:00', 7),
+	(32, 6, 'Object-Oriented Programming', 20, '2022-09-15 00:00:00', '2023-03-15 00:00:00', 8),
+	(33, 6, 'Full Stack Development', 28, '2022-10-01 00:00:00', '2023-04-01 00:00:00', 9),
+	(34, 8, 'Mobile App Development', 23, '2022-10-15 00:00:00', '2023-04-15 00:00:00', 10),
+	(35, 9, 'Game Development with Unity', 21, '2022-11-01 00:00:00', '2023-05-01 00:00:00', 7),
+	(36, 10, 'Artificial Intelligence', 29, '2022-11-15 00:00:00', '2023-05-15 00:00:00', 8);
 /*!40000 ALTER TABLE `session` ENABLE KEYS */;
 
 -- Listage de la structure de la table cdf. session_stagiaire
@@ -221,8 +266,65 @@ CREATE TABLE IF NOT EXISTS `session_stagiaire` (
   CONSTRAINT `FK_C80B23BBBA93DD6` FOREIGN KEY (`stagiaire_id`) REFERENCES `stagiaire` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table cdf.session_stagiaire : ~0 rows (environ)
+-- Listage des données de la table cdf.session_stagiaire : ~56 rows (environ)
 /*!40000 ALTER TABLE `session_stagiaire` DISABLE KEYS */;
+INSERT INTO `session_stagiaire` (`session_id`, `stagiaire_id`) VALUES
+	(7, 8),
+	(7, 11),
+	(7, 14),
+	(8, 1),
+	(8, 2),
+	(8, 3),
+	(8, 4),
+	(8, 5),
+	(8, 6),
+	(8, 7),
+	(8, 8),
+	(8, 9),
+	(8, 10),
+	(8, 11),
+	(8, 12),
+	(8, 13),
+	(8, 14),
+	(8, 15),
+	(8, 16),
+	(8, 17),
+	(9, 3),
+	(9, 4),
+	(9, 10),
+	(9, 13),
+	(9, 15),
+	(10, 2),
+	(10, 4),
+	(10, 9),
+	(10, 11),
+	(10, 14),
+	(11, 5),
+	(11, 7),
+	(11, 12),
+	(11, 15),
+	(11, 17),
+	(12, 5),
+	(12, 13),
+	(12, 16),
+	(13, 6),
+	(13, 7),
+	(13, 13),
+	(13, 14),
+	(13, 17),
+	(14, 1),
+	(14, 8),
+	(14, 15),
+	(15, 2),
+	(15, 3),
+	(15, 9),
+	(15, 10),
+	(15, 16),
+	(16, 3),
+	(16, 4),
+	(16, 10),
+	(16, 11),
+	(16, 17);
 /*!40000 ALTER TABLE `session_stagiaire` ENABLE KEYS */;
 
 -- Listage de la structure de la table cdf. stagiaire
