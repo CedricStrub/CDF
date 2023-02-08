@@ -20,15 +20,6 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[route('/session/{session}&{route}', name:'remove_session')]
-    public function remove(ManagerRegistry $doctrine,Session $session, $route)
-    {
-        //$em = $doctrine->getManager();
-        //$em->remove($session);
-        //$em->flush();
-        return $this->redirectToRoute($route, array('id' => $session->getFormation()->getId()));
-    }
-
     #[route('/session/add', name:'add_session')]
     public function add(ManagerRegistry $doctrine, Session $session = null, Request $request)
     {
@@ -46,6 +37,25 @@ class SessionController extends AbstractController
 
         return $this->render('session/add.html.twig', [
             'formAddSession' => $form->createView()
+        ]);
+    }
+
+    #[route('/session/{session}&{route}', name:'remove_session')]
+    public function remove(ManagerRegistry $doctrine,Session $session, $route)
+    {
+        //$em = $doctrine->getManager();
+        //$em->remove($session);
+        //$em->flush();
+        return $this->redirectToRoute($route, array('id' => $session->getFormation()->getId()));
+    }
+
+    #[route('/session/{id}', name:'show_session')]
+    public function show(ManagerRegistry $doctrine, Session $session): Response
+    {
+        
+
+        return $this->render('session/show.html.twig',[
+            'session' => $session
         ]);
     }
 
