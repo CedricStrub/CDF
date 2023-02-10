@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Modules;
 use App\Entity\Session;
 use App\Entity\Formation;
-use App\Entity\Modules;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
+use App\Form\StagiaireACType;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FormationController extends AbstractController
 {
@@ -101,7 +103,7 @@ class FormationController extends AbstractController
 
 
     #[Route('/formation/{id}', name:'show_formation')]
-    public function show(Formation $formation, ManagerRegistry $doctrine, $id= null): Response
+    public function show(Formation $formation, ManagerRegistry $doctrine, $id= null, Request $request): Response
     {
         
 
@@ -159,6 +161,21 @@ class FormationController extends AbstractController
             'progression' => $progression,
         ];
 
+        $stagiaireF = new Session;
+        $formStagiaire = $this->createForm(StagiaireACType::class, $stagiaireF);
+        $formStagiaire->handleRequest($request);
+
+        if($formStagiaire->isSubmitted() && $formStagiaire->isValid()){
+            $session = $formStagiaire->getData();
+            dd($session);
+            //$em = $doctrine->getManager();
+            //$em->persist($session);
+            //$em->flush();
+
+            return $this->redirectToRoute('app_formation');
+        }
+
+/*
         $formStagiaire = $this->createFormBuilder()
             ->add('stagiaire', EntityType::class,[
                 'class' => Stagiaire::class,
@@ -168,6 +185,7 @@ class FormationController extends AbstractController
             ])
             ->getForm()
         ;
+*/
 
         $formSession = $this->createFormBuilder()
             ->add('session', EntityType::class,[
@@ -185,7 +203,7 @@ class FormationController extends AbstractController
             'sessions' => $sessions,
             'stagiaires'=> $stagiaires,
             'data' => $data,
-            'formSt' => $formStagiaire->createView(),
+            'formStagiaireAC' => $formStagiaire->createView(),
             'formSe' => $formSession->createView(),
         ]);
     }

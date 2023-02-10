@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Session;
 use App\Entity\Programme;
 use App\Form\SessionACType;
+use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,7 +50,7 @@ class SessionController extends AbstractController
     #[route('/session/add', name:'add_session')]
     public function add(ManagerRegistry $doctrine, Session $session = null, Request $request)
     {
-        $form = $this->createForm(SessionACType::class, $session);
+        $form = $this->createForm(SessionAddType::class, $session);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -83,6 +84,7 @@ class SessionController extends AbstractController
         $places = $session->getPlace();
         $placeO = count($stagiaires);
         $placeL = $places - $placeO;
+
 
         return $this->render('session/show.html.twig',[
             'session' => $session,

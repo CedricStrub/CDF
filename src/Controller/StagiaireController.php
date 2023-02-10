@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Session;
 use App\Entity\Stagiaire;
+use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,11 +34,13 @@ class StagiaireController extends AbstractController
     }
 
     #[route('/stagiaire/{id}', name:'show_stagiaire')]
-    public function show(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
+    public function show(ManagerRegistry $doctrine, Stagiaire $stagiaire, SessionRepository $sr): Response
     {
+        $sessions = $sr->findByStagiaire($stagiaire,$doctrine);
 
         return $this->render('stagiaire/show.html.twig',[
             'stagiaire' => $stagiaire,
+            'sessions' => $sessions
         ]);
     }
 

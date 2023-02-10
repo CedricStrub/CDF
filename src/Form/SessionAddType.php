@@ -16,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class SessionACType extends AbstractType
+class SessionAddType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

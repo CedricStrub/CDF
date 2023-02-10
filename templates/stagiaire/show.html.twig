@@ -4,6 +4,36 @@
 
 {% block body %}
 
-<h1>{{ stagiaire }}</h1><br>
+<h1>Stagiaires</h1><br>
+{{ stagiaire.nom }}<br>
+{{ stagiaire.prenom }}<br>
+{{ stagiaire.sexe }}<br>
+{{ stagiaire.dateNaissance | date("d-m-Y") }} <br>
+{{ stagiaire.email }}<br>
+{{ stagiaire.telephone }}<br>
+{{ stagiaire.ville }}<br>
+{{ stagiaire.age }}<br>
+
+<h1>Sessions</h1><br>
+<table>
+    <thead>
+        <td>Intitule</td>
+        <td>Formateur</td>
+        <td>Date de Debut</td>
+        <td>Date de Fin</td>
+        <td>Places </td>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <td>{{ session.intitule }}</td>
+            <td>{{ session.formateur }}</td>
+            <td>{{ session.dateDebut | date("d-m-Y") }}</td>
+            <td>{{ session.dateFin | date("d-m-Y") }}</td>
+            <td>{{ session.place }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}

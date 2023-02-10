@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Session;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Stagiaire;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Session>
@@ -37,6 +38,52 @@ class SessionRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByStagiaire(Stagiaire $stagiaire, ManagerRegistry $doctrine)
+    {
+        $sessions = $doctrine->getRepository(Session::class)->findAll();
+        $st = $stagiaire->getId();
+        $data = [];
+        foreach($sessions as $session ){
+            $se = $session->getParticiper()->toArray();
+            $i = 0;
+            $in = 0;
+            while($i < count($se)){
+                if($st == $se[$i]->getId()){
+                    $in = 1;
+                }
+                $i = $i + 1;
+            }
+            if($in == 1){
+                $data []= $session;
+            }
+        }
+
+        return $data;
+    }
+
+    public function findNonRegistered(Session $session, ManagerRegistry $doctrine)
+    {
+        $st1 = $session->getParticiper()->toArray();
+        $st2 = $doctrine->getRepository(Stagiaire::class)->findAll();
+        $i = 0;
+        $data = [];
+        while($i < count($st2)){
+            $in = 0;
+            $j = 0;
+            while($j < count($st1)){
+                if($st1[$j]->getId() == $st2[$i]->getId()){
+                    $in = 1;
+                }
+                $j = $j + 1;
+            }
+            if($in == 0){
+                $data []= $st2[$i];
+            }
+            $i = $i + 1;
+        }
+        return $data;
     }
 
 //    /**
