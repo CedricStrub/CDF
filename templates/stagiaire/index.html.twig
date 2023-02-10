@@ -1,22 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StagiaireController!{% endblock %}
+{% block title %}Liste Stagiaire{% endblock %}
 
 {% block body %}
 
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/CedricStrub/CDF/CDF/src/Controller/StagiaireController.php'|file_link(0) }}">src/Controller/StagiaireController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/CedricStrub/CDF/CDF/templates/stagiaire/index.html.twig'|file_link(0) }}">templates/stagiaire/index.html.twig</a></code></li>
-    </ul>
+<link rel="stylesheet" href={{ asset("/formation.css") }}>
+<div class="forma">
+    <div class="title-ctn">
+        <div class="title">Stagiaires</div>
+    </div>
+    <div class="search-ctn">
+        <div class="titre">Recherche</div>
+    </div>
+    <div class="ctn-tab">
+        <div class="cadre-tab">
+            <div class="titre">Stagiaire inscrit</div>
+            <div class="tab">
+                <table>
+                    <thead>
+                        <td>Nom</td>
+                        <td>Prenom</td>
+                        <td>E-mail</td>
+                        <td>Date de Naissance</td>
+                        <td>Sexe</td>
+                        <td>Telephone</td>
+                        <td>Ville</td>
+                    </thead>
+                    <tbody>
+                    {% for stagiaire in stagiaires %}
+                        <tr>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom }}</a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.prenom }}</a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.email }}</a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.dateNaissance | date("d-m-Y") }}</a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.sexe }}</a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.telephone }}</a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.ville }}</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

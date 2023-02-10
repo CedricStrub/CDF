@@ -2,6 +2,8 @@ body{
     background: var(--ter);
 }
 
+[data-href] { cursor: pointer; }
+
 .forma{
     padding: 20px;
 }

@@ -1,0 +1,20 @@
+.ts-control input[type="select-one"] {
+    width: 500px;
+    height: 50px;
+    background-color: var(--qua)!important;
+    background: var(--qua)!important;
+    color: var(--txt-high);
+    font-size: 25px;
+    padding-left: 30px;
+}
+
+.ts-control {
+    background: var(--ter)!important;
+    border-color: var(--qua)!important;
+}
+
+.ts-dropdown-content {
+    background-color: var(--qua);
+    color: var(--txt-dark);
+    font-size: 15px;
+}

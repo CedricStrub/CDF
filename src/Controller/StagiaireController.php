@@ -12,10 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class StagiaireController extends AbstractController
 {
     #[Route('/stagiaire', name: 'app_stagiaire')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $stagiaires = $doctrine->getRepository(Stagiaire::class)->findAll();
+
         return $this->render('stagiaire/index.html.twig', [
             'controller_name' => 'StagiaireController',
+            'stagiaires' => $stagiaires,
         ]);
     }
 
@@ -27,6 +30,15 @@ class StagiaireController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute($route, array('id' => $session->getFormation()->getId()));
+    }
+
+    #[route('/stagiaire/{id}', name:'show_stagiaire')]
+    public function show(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
+    {
+
+        return $this->render('stagiaire/show.html.twig',[
+            'stagiaire' => $stagiaire,
+        ]);
     }
 
 }

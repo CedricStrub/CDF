@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Entity\Programme;
 use App\Form\SessionACType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,10 +14,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SessionController extends AbstractController
 {
     #[Route('/session', name: 'app_session')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $sessions = $doctrine->getRepository(Session::class)->findAll();
+
+        $data = [];
+        
+        foreach($sessions as $session){
+            $modules = $doctrine->getRepository(Programme::class)->findBy(['session' => $session->getId()]);
+            $places = $session->getPlace();
+            $stagiaire = $session->getParticiper()->toArray();
+            $placeO = count($stagiaire);
+            $placeL = $places - $placeO;
+
+            $d = [
+                'intitule' => $session->getIntitule(),
+                'dateDebut' => $session->getDateDebut(),
+                'dateFin' => $session->getDateFin(),
+                'placeL' => $placeL,
+                'place' => $places,
+            ];
+
+            $data[] = $d;
+
+        }
+
         return $this->render('session/index.html.twig', [
             'controller_name' => 'SessionController',
+            'sessions' => $sessions,
+            'data' => $data,
         ]);
     }
 
@@ -52,12 +78,19 @@ class SessionController extends AbstractController
     #[route('/session/{id}', name:'show_session')]
     public function show(ManagerRegistry $doctrine, Session $session): Response
     {
-        
+        $programmes = $doctrine->getRepository(Programme::class)->findBy(['session' => $session->getId()]);
+        $stagiaires = $session->getParticiper()->toArray();
+        $places = $session->getPlace();
+        $placeO = count($stagiaires);
+        $placeL = $places - $placeO;
 
         return $this->render('session/show.html.twig',[
-            'session' => $session
+            'session' => $session,
+            'programmes' => $programmes,
+            'stagiaires' => $stagiaires,
+            'placeL' => $placeL,
+            'nbModules' => count($programmes),
         ]);
     }
-
 
 }
