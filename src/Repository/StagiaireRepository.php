@@ -14,6 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Stagiaire[]    findAll()
  * @method Stagiaire[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class StagiaireRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -29,6 +30,11 @@ class StagiaireRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+	public function inscrire(Stagiaire $entity)
+	{
+
+	}
 
     public function remove(Stagiaire $entity, bool $flush = false): void
     {

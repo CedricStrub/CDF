@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ModuleController extends AbstractController
 {
-    #[Route('/module', name: 'app_module')]
-    public function index(): Response
-    {
-        return $this->render('module/index.html.twig', [
-            'controller_name' => 'ModuleController',
-        ]);
-    }
+	#[Route('/module', name: 'app_module')]
+	public function index(): Response
+	{
+		return $this->render('module/index.html.twig', [
+			'controller_name' => 'ModuleController',
+		]);
+	}
 }

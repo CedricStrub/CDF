@@ -12,36 +12,47 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StagiaireController extends AbstractController
 {
-    #[Route('/stagiaire', name: 'app_stagiaire')]
-    public function index(ManagerRegistry $doctrine): Response
-    {
-        $stagiaires = $doctrine->getRepository(Stagiaire::class)->findAll();
+	#[Route('/stagiaire', name: 'app_stagiaire')]
+	public function index(ManagerRegistry $doctrine): Response
+	{
+		$stagiaires = $doctrine->getRepository(Stagiaire::class)->findAll();
 
-        return $this->render('stagiaire/index.html.twig', [
-            'controller_name' => 'StagiaireController',
-            'stagiaires' => $stagiaires,
-        ]);
-    }
+		return $this->render('stagiaire/index.html.twig', [
+			'controller_name' => 'StagiaireController',
+			'stagiaires' => $stagiaires,
+		]);
+	}
 
-    #[Route('/stagiaire/{stagiaire}&{session}&{route}', name: 'remove_stagiaire')]
-    public function remove(ManagerRegistry $doctrine,Stagiaire $stagiaire,Session $session, $route)
-    {
-        $em = $doctrine->getManager();
-        $session->removeParticiper($stagiaire);
-        $em->flush();
+	#[Route('/stagiaire/{stagiaire}&{session}&{route}&{id}', name: 'remove_stagiaire')]
+	public function remove(ManagerRegistry $doctrine, Stagiaire $stagiaire, Session $session, $route, $id)
+	{
+		$em = $doctrine->getManager();
+		$session = $em->getRepository(Session::class)->find($session->getId());
+		$session->removeParticiper($stagiaire);
+		$em->flush();
 
-        return $this->redirectToRoute($route, array('id' => $session->getFormation()->getId()));
-    }
+		return $this->redirectToRoute($route, ['id' => $id]);
+	}
 
-    #[route('/stagiaire/{id}', name:'show_stagiaire')]
-    public function show(ManagerRegistry $doctrine, Stagiaire $stagiaire, SessionRepository $sr): Response
-    {
-        $sessions = $sr->findByStagiaire($stagiaire,$doctrine);
+	#[Route('/stagiaire/{id}', name: 'delete_stagiaire')]
+	public function delete(ManagerRegistry $doctrine, $stagiaire)
+	{
+		$em = $doctrine->getManager();
+		$stagiaire = $em->getRepository(Stagiaire::class)->find($stagiaire);
+		if ($stagiaire) {
+			$em->remove($stagiaire);
+		}
+		$em->flush();
+	}
 
-        return $this->render('stagiaire/show.html.twig',[
-            'stagiaire' => $stagiaire,
-            'sessions' => $sessions
-        ]);
-    }
+	#[route('/stagiaire/{id}', name: 'show_stagiaire')]
+	public function show(ManagerRegistry $doctrine, Stagiaire $stagiaire, SessionRepository $sr): Response
+	{
+		$sessions = $sr->findByStagiaire($stagiaire, $doctrine);
 
+		return $this->render('stagiaire/show.html.twig', [
+			'stagiaire' => $stagiaire,
+			'sessions' => $sessions
+		]);
+	}
 }

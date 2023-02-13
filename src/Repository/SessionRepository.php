@@ -40,6 +40,7 @@ class SessionRepository extends ServiceEntityRepository
         }
     }
 
+
     public function findByStagiaire(Stagiaire $stagiaire, ManagerRegistry $doctrine)
     {
         $sessions = $doctrine->getRepository(Session::class)->findAll();
