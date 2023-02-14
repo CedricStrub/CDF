@@ -6,10 +6,8 @@ use App\Entity\Modules;
 use App\Entity\Session;
 use App\Entity\Programme;
 use App\Form\ModulesACType;
-use App\Form\SessionACType;
 use App\Form\SessionAddType;
 use App\Form\StagiaireACType;
-use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,9 +71,10 @@ class SessionController extends AbstractController
 	#[route('/session/{session}&{route}', name: 'remove_session')]
 	public function remove(ManagerRegistry $doctrine, Session $session, $route)
 	{
-		//$em = $doctrine->getManager();
-		//$em->remove($session);
-		//$em->flush();
+		$em = $doctrine->getManager();
+		$em->remove($session);
+		$em->flush();
+
 		return $this->redirectToRoute($route, array('id' => $session->getFormation()->getId()));
 	}
 
@@ -88,7 +87,7 @@ class SessionController extends AbstractController
 		$em->flush();
 		return $this->redirectToRoute($route, ['id' => $id]);
 	}
-	
+
 	#[route('/session/{id}', name: 'show_session')]
 	public function show(ManagerRegistry $doctrine, Session $session, Request $request, $id): Response
 	{
@@ -130,7 +129,6 @@ class SessionController extends AbstractController
 
 			return $this->redirectToRoute('show_session', ['id' => $id]);;
 		}
-		//dd($session);
 
 		return $this->render('session/show.html.twig', [
 			'session' => $session,

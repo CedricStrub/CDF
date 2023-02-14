@@ -23,6 +23,17 @@ class StagiaireController extends AbstractController
 		]);
 	}
 
+	#[route('/stagiaire/show/{id}', name: 'show_stagiaire')]
+	public function show(ManagerRegistry $doctrine, Stagiaire $stagiaire, SessionRepository $sr): Response
+	{
+		$sessions = $sr->findByStagiaire($stagiaire, $doctrine);
+
+		return $this->render('stagiaire/show.html.twig', [
+			'stagiaire' => $stagiaire,
+			'sessions' => $sessions
+		]);
+	}
+
 	#[Route('/stagiaire/{stagiaire}&{session}&{route}&{id}', name: 'remove_stagiaire')]
 	public function remove(ManagerRegistry $doctrine, Stagiaire $stagiaire, Session $session, $route, $id)
 	{
@@ -43,16 +54,5 @@ class StagiaireController extends AbstractController
 			$em->remove($stagiaire);
 		}
 		$em->flush();
-	}
-
-	#[route('/stagiaire/{id}', name: 'show_stagiaire')]
-	public function show(ManagerRegistry $doctrine, Stagiaire $stagiaire, SessionRepository $sr): Response
-	{
-		$sessions = $sr->findByStagiaire($stagiaire, $doctrine);
-
-		return $this->render('stagiaire/show.html.twig', [
-			'stagiaire' => $stagiaire,
-			'sessions' => $sessions
-		]);
 	}
 }

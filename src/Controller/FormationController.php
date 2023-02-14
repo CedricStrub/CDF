@@ -2,18 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Modules;
 use App\Entity\Session;
 use App\Entity\Formation;
 use App\Entity\Programme;
-use App\Entity\Stagiaire;
-use App\Form\StagiaireACType;
+use App\Form\SessionACType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FormationController extends AbstractController
@@ -158,15 +155,28 @@ class FormationController extends AbstractController
 			'progression' => $progression,
 		];
 
-		$formSession = $this->createFormBuilder()
-			->add('session', EntityType::class, [
-				'class' => Session::class,
-				'autocomplete' => true,
-				'placeholder' => 'Intitulé',
-				'attr' => ['class' => 'bar']
-			])
-			->getForm();
+		$Session = new Session;;
+		$formSession = $this->createForm(SessionACType::class, $Session);
+		$formSession->handleRequest($request);
 
+		if ($formSession->isSubmitted() && $formSession->isValid()) {
+			$id2 = $formSession->get('intitule')->getData();
+			$session = $doctrine->getRepository(Session::class)->findBy(['id' => $id2]);
+			$session = $session[0];
+			$formSession = $formSession->getData();
+
+			$formSession->setIntitule($session->getIntitule());
+			$formSession->setPlace($session->getPlace());
+			$formSession->setDateFin($session->getDateFin());
+			$formSession->setFormateur($session->getFormateur());
+			$formSession->setFormation($formation);
+
+			$em = $doctrine->getManager();
+			$em->persist($formSession);
+			$em->flush();
+
+			return $this->redirectToRoute('show_formation', ['id' => $id]);
+		}
 
 		return $this->render('formation/show.html.twig', [
 			'formation' => $formation,
