@@ -7,6 +7,7 @@ use App\Entity\Session;
 use App\Entity\Programme;
 use App\Form\ModulesACType;
 use App\Form\SessionAddType;
+use App\Form\FormateurACType;
 use App\Form\StagiaireACType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -130,10 +131,21 @@ class SessionController extends AbstractController
 			return $this->redirectToRoute('show_session', ['id' => $id]);;
 		}
 
+		$formateur = $this->createForm(FormateurACType::class, $session);
+		$formateur->handleRequest($request);
+
+		if ($formateur->isSubmitted() && $formateur->isValid()) {
+			$session->setFormateur($formateur->get('formateur')->getData());
+			$em = $doctrine->getManager();
+			$em->persist($session);
+			$em->flush();
+		}
+
 		return $this->render('session/show.html.twig', [
 			'session' => $session,
 			'programmes' => $programmes,
 			'stagiaires' => $stagiaires,
+			'formFormateur' => $formateur,
 			'formModulesAC' => $formModules,
 			'formStagiaireAC' => $formStagiaire->createView(),
 			'placeL' => $placeL,
