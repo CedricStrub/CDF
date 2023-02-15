@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+
+<link rel="stylesheet" href={{ asset("/formation.css") }}>
+<div class="forma">
+    <div class="title-ctn">
+        <div class="title">{{ utilisateur.nom }} - {{ utilisateur.prenom }}</div>
+    </div>
+</div>
+
+{% endblock %}

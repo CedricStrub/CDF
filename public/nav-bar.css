@@ -46,8 +46,8 @@
 }
 
 .portrait{
-    left: 15px;
-    width: 130px;
+    left: 10px;
+    width: 145px;
     height: 160px;
     background: var(--sec);
     border: solid 2px;
@@ -56,6 +56,13 @@
     z-index: 1;
     box-shadow: 0px 2px 3px 0px var(--ter);
 }
+
+.portrait img{
+    width: 100%;
+    height: 100%;
+}
+
+
 
 .portrait-txt{
     position: absolute;

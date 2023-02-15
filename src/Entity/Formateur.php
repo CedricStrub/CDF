@@ -19,6 +19,12 @@ class Formateur
     #[ORM\Column(length: 50)]
     private ?string $prenom = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $portrait = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,5 +57,29 @@ class Formateur
     public function __toString()
     {
         return $this->prenom." - ".$this->nom ;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPortrait(): ?string
+    {
+        return $this->portrait;
+    }
+
+    public function setPortrait(?string $portrait): self
+    {
+        $this->portrait = $portrait;
+
+        return $this;
     }
 }

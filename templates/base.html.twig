@@ -32,9 +32,13 @@
                 <div class="btn"><a href="{{ path('app_formateur') }}">Formateur</a></div>
                 <div class="btn"><a href="{{ path('app_module') }}">Module</a></div>
                 <div class="portrait-ctn">
-                    <div class="portrait"></div>
-                    <span class="portrait-txt pos1">Nom</span>
-                    <span class="portrait-txt pos2">Prénom</span>
+                    <a href="{{ path('app_profil') }}">
+                        <div class="portrait">
+                            <img src="{{ asset(app.user.formateur.portrait) }}" alt="">
+                        </div>
+                    </a>
+                    <span class="portrait-txt pos1">{{ app.user.formateur.nom }}</span>
+                    <span class="portrait-txt pos2">{{ app.user.formateur.prenom }}</span>
                     <div class="btn-alt"><a href="{{ path('app_logout') }}"><img class="icon" src="{{ asset("/logout.png") }}" ></a>
                     <span class="icon-txt">Deconnexion</span>
                     </div>
