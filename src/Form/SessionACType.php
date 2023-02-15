@@ -27,6 +27,7 @@ class SessionACType extends AbstractType
 			->add('intitule', ChoiceType::class, [
 				'choices' => $this->getSessionType(),
 				'autocomplete' => true,
+				'label' => false,
 			])
 			->add('dateDebut', DateType::class, [
 				'required' => true,

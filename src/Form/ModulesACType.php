@@ -21,6 +21,7 @@ class ModulesACType extends AbstractType
 				'placeholder' => 'Nom du Module',
 				'attr' => ['class' => 'bar'],
 				'mapped' => false,
+				'label' => false,
 			])
 			->add('duree', NumberType::class, [
 				'label' => 'Durée (en heures)',

@@ -20,6 +20,7 @@ class FormateurACType extends AbstractType
 				'placeholder' => 'Prenom - Nom',
 				'attr' => ['class' => 'bar'],
 				'mapped' => false,
+				'label' => false,
 			]);
 	}
 

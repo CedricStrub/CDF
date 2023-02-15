@@ -114,7 +114,7 @@ class SessionController extends AbstractController
 			$em->persist($programme);
 			$em->flush();
 
-			return $this->redirectToRoute('show_session', ['id' => $id]);;
+			return $this->redirectToRoute('show_session', ['id' => $id]);
 		}
 
 		$stagiaireF = new Session;
@@ -128,7 +128,7 @@ class SessionController extends AbstractController
 			$em->persist($session);
 			$em->flush();
 
-			return $this->redirectToRoute('show_session', ['id' => $id]);;
+			return $this->redirectToRoute('show_session', ['id' => $id]);
 		}
 
 		$formateur = $this->createForm(FormateurACType::class, $session);

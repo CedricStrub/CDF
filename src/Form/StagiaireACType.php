@@ -22,6 +22,7 @@ class StagiaireACType extends AbstractType
 				'placeholder' => 'Prenom - Nom',
 				'attr' => ['class' => 'bar'],
 				'mapped' => false,
+				'label' => false,
 			])
 			->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
 				/** @var Session $session */

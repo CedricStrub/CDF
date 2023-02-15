@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FormateurController!{% endblock %}
+
+{% block body %}
+
+<link rel="stylesheet" href={{ asset("/formation.css") }}>
+<div class="forma">
+    <div class="title-ctn">
+        <div class="title">{{ formateur.nom }} - {{ formateur.prenom }}</div>
+    </div>
+    <div class="ctn-tab">
+        <div class="cadre-tab">
+            <div class="titre">Liste des Sessions</div>
+            <div class="tab">
+                <table>
+                    <thead>
+                        <td>Intitulé</td>
+                        <td>Date de Début</td>
+                        <td>Date de Fin</td>
+                        <td>Places</td>
+                    </thead>
+                    <tbody>
+                    {% set i = 0 %}
+                    {% for session in sessions %}
+                        <tr>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}">{{ session }}</a></td>
+                            <td>{{ data[i].dateDebut | date("d-m-Y") }}</td>
+                            <td>{{ data[i].dateFin | date("d-m-Y") }}</td>
+                            <td>{{ data[i].placeL }} / {{ data[i].place }}</td>
+                        </tr>
+                        {% set i = i + 1 %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
