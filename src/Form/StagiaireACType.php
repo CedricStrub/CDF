@@ -19,8 +19,6 @@ class StagiaireACType extends AbstractType
 			->add('addParticiper', EntityType::class, [
 				'class' => Stagiaire::class,
 				'autocomplete' => true,
-				'placeholder' => 'Prenom - Nom',
-				'attr' => ['class' => 'bar'],
 				'mapped' => false,
 				'label' => false,
 			])

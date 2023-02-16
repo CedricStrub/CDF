@@ -2,84 +2,102 @@
 {% block body %}
 
 <link rel="stylesheet" href="{{ asset('css/custom_autocomplete.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/detailFormation.css') }}" />
 
-<h1>{{ formation.intitule }}</h1>
-<br />
-{{ data.duree }} <br />
-{{ data.dateDebut }} <br />
-{{ data.dateFin }} <br />
-{{ data.placesV }} <br />
-{{ data.placesT }} <br />
-{{ data.progression }} <br />
-
-<br />
-<h2>Sessions</h2>
-<br />
-
-<table>
-  <thead>
-    <td>Intitulé</td>
-    <td>Places</td>
-    <td>Durée</td>
-    <td>Action</td>
-  </thead>
-  <tbody>
-    {% for session in sessions %}
-    <tr>
-      <td>{{ session.intitule }}</td>
-      <td>{{ session.place }}</td>
-      <td>{{ session.duree }} Jours</td>
-      <td>
-        <a
-          href="{{
-            path('remove_session', {
-              session: session.id,
-              route: 'show_formation'
-            })
-          }}"
-          >Déprogrammer</a
-        >
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-{{ form_start(formSe) }}
-<div class="search">
-  {{ form_row(formSe, { label: false }) }}
+<div class="forma">
+  <div class="title-ctn">
+    <div class="title">{{ formation.intitule }}</div>
+  </div>
+  <div class="detail-ctn">
+    <div class="detail margR">
+      <div class="titre">Durée Total :</div>
+      <div class="detail-txt">{{ data.duree }} H</div> 
+      <div class="titre">Date de Debut :</div>
+      <div class="detail-txt">{{ data.dateDebut }}</div> 
+      <div class="titre">Date de Fin :</div>
+      <div class="detail-txt">{{ data.dateFin }} </div>
+    </div>
+    <div class="detail">
+      <div class="titre">Nombre de places :</div>
+      <div class="detail-txt">{{ data.placesV }} </div>
+      <div class="titre">Nombre de places Disponible :</div>
+      <div class="detail-txt">{{ data.placesT }} </div>
+      <div class="titre">Progression :</div>
+      <div class="detail-txt">{{ data.progression }} </div>
+    </div>
 </div>
-{{ form_end(formSe) }}
 
-<br />
-<h2>Stagiaires</h2>
-<br />
+<div class="ctn-tab">
+  <div class="titre">Sessions</div>
+  <table>
+    <thead>
+      <td>Intitulé</td>
+      <td>Places</td>
+      <td>Durée</td>
+      <td>Action</td>
+    </thead>
+    <tbody>
+      {% for session in sessions %}
+      <tr>
+        <td>{{ session.intitule }}</td>
+        <td>{{ session.place }}</td>
+        <td>{{ session.duree }} Jours</td>
+        <td>
+          <a
+            href="{{
+              path('remove_session', {
+                session: session.id,
+                route: 'show_formation'
+              })
+            }}"
+            >Déprogrammer</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-<table>
-  <thead>
-    <td>Stagiaire</td>
-    <td>Action</td>
-  </thead>
-  <tbody>
-    {% for stagiaire in stagiaires[0] %}
-    <tr>
-      <td>{{ stagiaire.nom }}{{ stagiaire.prenom }}</td>
-      <td>
-        <a
-          href="{{
-            path('remove_stagiaire', {
-              stagiaire: stagiaire.id,
-              session: sessions[0].id,
-              route: 'show_formation',
-              id: formation.id
-            })
-          }}"
-          >Désinscrire</a
-        >
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="ctn-tab">
+  <div class="titre">Ajouter Sessions</div>
+  {{ form_start(formSe) }}
+  <div class="search">
+    {{ form_row(formSe, { label: false }) }}
+  </div>
+  {{ form_end(formSe) }}
+</div>
+
+
+<div class="ctn-tab">
+  <div class="titre">Stagiaires</div>
+  <table>
+    <thead>
+      <td>Stagiaire</td>
+      <td>Action</td>
+    </thead>
+    <tbody>
+      {% for stagiaire in stagiaires[0] %}
+      <tr>
+        <td>{{ stagiaire.nom }} - {{ stagiaire.prenom }}</td>
+        <td>
+          <a
+            href="{{
+              path('remove_stagiaire', {
+                stagiaire: stagiaire.id,
+                session: sessions[0].id,
+                route: 'show_formation',
+                id: formation.id
+              })
+            }}"
+            >Désinscrire</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
 
 {% endblock %}

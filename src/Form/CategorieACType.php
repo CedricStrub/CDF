@@ -17,8 +17,6 @@ class CategorieACType extends AbstractType
         ->add('categorie', EntityType::class, [
             'class' => Categorie::class,
             'autocomplete' => true,
-            'placeholder' => 'Nom du Module',
-            'attr' => ['class' => 'bar'],
             'mapped' => false,
             'label' => false,
         ]);

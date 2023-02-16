@@ -18,14 +18,11 @@ class ModulesACType extends AbstractType
 			->add('module', EntityType::class, [
 				'class' => Modules::class,
 				'autocomplete' => true,
-				'placeholder' => 'Nom du Module',
-				'attr' => ['class' => 'bar'],
 				'mapped' => false,
 				'label' => false,
 			])
 			->add('duree', NumberType::class, [
 				'label' => 'Durée (en heures)',
-				'attr' => ['class' => 'bar'],
 				'mapped' => false,
 			])
 			->add('submit', SubmitType::class, [

@@ -3,37 +3,58 @@
 {% block title %}Liste Stagiaire{% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href="{{ asset('css/detailStagiaire.css') }}" />
 
-<h1>Stagiaires</h1><br>
-{{ stagiaire.nom }}<br>
-{{ stagiaire.prenom }}<br>
-{{ stagiaire.sexe }}<br>
-{{ stagiaire.dateNaissance | date("d-m-Y") }} <br>
-{{ stagiaire.email }}<br>
-{{ stagiaire.telephone }}<br>
-{{ stagiaire.ville }}<br>
-{{ stagiaire.age }}<br>
+<div class="forma">
+<div class="profil">
+    <div class="picture margR2"></div>
+    <div class="info">
+        <div class="title margB2">{{ stagiaire.nom }} - {{ stagiaire.prenom }}</div>
+        <div class="detail-ctn">
+            <div class="detail-head">Informations</div>
+            <div class="detail margR">
+                <div class="titre">E-mail :</div>
+                <div class="detail-txt">{{ stagiaire.email }}</div>
+                <div class="titre">Sexe :</div>
+                <div class="detail-txt">{{ stagiaire.sexe }}</div>
+                <div class="titre">Date de Naissance :</div>
+                <div class="detail-txt">{{ stagiaire.dateNaissance | date("d-m-Y") }}</div>
+            </div>
+            <div class="detail">
+                <div class="titre">Telephone :</div>
+                <div class="detail-txt">{{ stagiaire.telephone }}</div>
+                <div class="titre">Ville :</div>
+                <div class="detail-txt">{{ stagiaire.ville }}</div>
+                <div class="titre">Age :</div>
+                <div class="detail-txt">{{ stagiaire.age }}</div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h1>Sessions</h1><br>
-<table>
-    <thead>
-        <td>Intitule</td>
-        <td>Formateur</td>
-        <td>Date de Debut</td>
-        <td>Date de Fin</td>
-        <td>Places </td>
-    </thead>
-    <tbody>
-        {% for session in sessions %}
-        <tr>
-            <td>{{ session.intitule }}</td>
-            <td>{{ session.formateur }}</td>
-            <td>{{ session.dateDebut | date("d-m-Y") }}</td>
-            <td>{{ session.dateFin | date("d-m-Y") }}</td>
-            <td>{{ session.place }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="ctn-tab">
+    <div class="titre">Sessions</div>
+    <table>
+        <thead>
+            <td>Intitule</td>
+            <td>Formateur</td>
+            <td>Date de Debut</td>
+            <td>Date de Fin</td>
+            <td>Places </td>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+            <tr>
+                <td>{{ session.intitule }}</td>
+                <td>{{ session.formateur }}</td>
+                <td>{{ session.dateDebut | date("d-m-Y") }}</td>
+                <td>{{ session.dateFin | date("d-m-Y") }}</td>
+                <td>{{ session.place }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
 
 {% endblock %}

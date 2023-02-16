@@ -17,8 +17,6 @@ class FormateurACType extends AbstractType
 			->add('formateur', EntityType::class, [
 				'class' => Formateur::class,
 				'autocomplete' => true,
-				'placeholder' => 'Prenom - Nom',
-				'attr' => ['class' => 'bar'],
 				'mapped' => false,
 				'label' => false,
 			]);

@@ -35,6 +35,9 @@ class Stagiaire
     #[ORM\Column(length: 100)]
     private ?string $ville = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $portrait = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -134,6 +137,18 @@ class Stagiaire
     public function __toString()
     {
         return $this->prenom." - ".$this->nom;
+    }
+
+    public function getPortrait(): ?string
+    {
+        return $this->portrait;
+    }
+
+    public function setPortrait(string $portrait): self
+    {
+        $this->portrait = $portrait;
+
+        return $this;
     }
 
 }

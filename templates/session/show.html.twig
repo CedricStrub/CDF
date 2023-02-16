@@ -1,100 +1,121 @@
 {% extends 'base.html.twig' %} {% block title %}Detail Session{% endblock %} {%
 block body %}
 
-<h1>{{ session.intitule }}</h1>
-<br />
-{{ session.formateur }} <br />
-{{ session.dateDebut | date("d-m-Y") }} <br />
-{{ session.dateFin | date("d-m-Y") }} <br />
-{{ session.place }} <br />
-{{ placeL }} <br />
-{{ nbModules }} <br />
+<link rel="stylesheet" href="{{ asset('css/custom_autocomplete.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/detailSession.css') }}" />
 
-<br />
-<h2>Formateur</h2>
-<br />
-
-{{ form_start(formFormateur) }}
-<div class="search">
-  {{ form_row(formFormateur, { label: false }) }}
+<div class="forma">
+  <div class="title-ctn">
+    <div class="title">{{ session.intitule }}</div>
+  </div>
+  <div class="detail-ctn">
+    <div class="detail margR">
+      <div class="titre">Formateur Référent :</div>
+      <div class="detail-txt">{{ session.formateur }}</div> 
+      <div class="titre">Date de Début :</div>
+      <div class="detail-txt">{{ session.dateDebut | date("d-m-Y") }}</div>
+      <div class="titre">Date de Fin :</div>
+      <div class="detail-txt">{{ session.dateFin | date("d-m-Y") }} </div>
+    </div>
+    <div class="detail">
+      <div class="titre">Nombre de Places :</div>
+      <div class="detail-txt">{{ session.place }} </div>
+      <div class="titre">Nombre de Places Disponible :</div>
+      <div class="detail-txt">{{ placeL }}</div> 
+      <div class="titre">Nombre de modules :</div>
+      <div class="detail-txt">{{ nbModules }} </div>
+  </div>
 </div>
-{{ form_end(formFormateur) }}
 
-<br />
-<h2>Programme</h2>
-<br />
-
-<table>
-  <thead>
-    <td>Module</td>
-    <td>Catégorie</td>
-    <td>Durée</td>
-    <td>Action</td>
-  </thead>
-  <tbody>
-    {% for programme in programmes %}
-    <tr>
-      <td>{{ programme.module.nom }}</td>
-      <td>{{ programme.module.categorie.nom }}</td>
-      <td>{{ programme.duree }} Jours</td>
-      <td>
-        <a
-          href="{{
-            path('remove_programme', {
-              id: session.id,
-              programmeId: programme.id,
-              route: 'show_session',
-            })
-          }}"
-          >Déprogrammer</a
-        >
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-{{ form_start(formModulesAC) }}
-<div class="search">
-  {{ form_row(formModulesAC, { label: false }) }}
+<div class="ctn-tab">
+  <div class="titre">Formateur</div>
+  {{ form_start(formFormateur) }}
+  <div class="search">
+    {{ form_row(formFormateur, { label: false }) }}
+  </div>
+  {{ form_end(formFormateur) }}
 </div>
-{{ form_end(formModulesAC) }}
 
-<br />
-<h2>Stagiaire</h2>
-<br />
-
-<table>
-  <thead>
-    <td>Stagiaire</td>
-    <td>Action</td>
-  </thead>
-  <tbody>
-    {% for stagiaire in stagiaires %}
-    <tr>
-      <td>{{ stagiaire.prenom }} - {{ stagiaire.nom }}</td>
-      <td>
-        <a
-          href="{{
-            path('remove_stagiaire', {
-              stagiaire: stagiaire.id,
-              session: session.id,
-              route: 'show_session',
-              id: session.id
-            })
-          }}"
-          >Désinscrire</a
-        >
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-{{ form_start(formStagiaireAC) }}
-<div class="search">
-  {{ form_row(formStagiaireAC, { label: false }) }}
+<div class="ctn-tab">
+<div class="titre">Programme</div>
+  <table>
+    <thead>
+      <td>Module</td>
+      <td>Catégorie</td>
+      <td>Durée</td>
+      <td>Action</td>
+    </thead>
+    <tbody>
+      {% for programme in programmes %}
+      <tr>
+        <td>{{ programme.module.nom }}</td>
+        <td>{{ programme.module.categorie.nom }}</td>
+        <td>{{ programme.duree }} Jours</td>
+        <td>
+          <a
+            href="{{
+              path('remove_programme', {
+                id: session.id,
+                programmeId: programme.id,
+                route: 'show_session',
+              })
+            }}"
+            >Déprogrammer</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
-{{ form_end(formStagiaireAC) }}
+
+<div class="ctn-tab">
+  <div class="titre">Ajouter Programme</div>
+  {{ form_start(formModulesAC) }}
+  <div class="search">
+    {{ form_row(formModulesAC, { label: false }) }}
+  </div>
+  {{ form_end(formModulesAC) }}
+</div>
+
+<div class="ctn-tab">
+  <div class="titre">Stagiaire</div>
+  <table>
+    <thead>
+      <td>Stagiaire</td>
+      <td>Action</td>
+    </thead>
+    <tbody>
+      {% for stagiaire in stagiaires %}
+      <tr>
+        <td>{{ stagiaire.prenom }} - {{ stagiaire.nom }}</td>
+        <td>
+          <a
+            href="{{
+              path('remove_stagiaire', {
+                stagiaire: stagiaire.id,
+                session: session.id,
+                route: 'show_session',
+                id: session.id
+              })
+            }}"
+            >Désinscrire</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="ctn-tab">
+  <div class="titre">Ajouter Stagiaire</div>
+  {{ form_start(formStagiaireAC) }}
+  <div class="search">
+    {{ form_row(formStagiaireAC, { label: false }) }}
+  </div>
+  {{ form_end(formStagiaireAC) }}
+</div>
+</div>
 
 {% endblock %}
