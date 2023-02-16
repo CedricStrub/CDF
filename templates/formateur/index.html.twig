@@ -19,7 +19,7 @@
                 {% for formateur in formateurs %}
                 <a href="{{ path('show_formateur', {'id': formateur.id}) }}">
                 <div class="carte">
-                    <img class="miniature" src={{ asset(formateur.portrait) }}></img>
+                    <img class="miniature" src={{ asset("Formateur/" ~ formateur.portrait) }}></img>
                     <div class="carte-info">
                         <div class="carte-n">{{ formateur.nom }}</div>
                         <div class="carte-p">{{ formateur.prenom }}</div>

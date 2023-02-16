@@ -34,7 +34,7 @@
                 <div class="portrait-ctn">
                     <a href="{{ path('app_profil') }}">
                         <div class="portrait">
-                            <img src="{{ asset(app.user.formateur.portrait) }}" alt="">
+                            <img src="{{ asset('Formateur/' ~ app.user.formateur.portrait) }}" alt="">
                         </div>
                     </a>
                     <span class="portrait-txt pos1">{{ app.user.formateur.nom }}</span>
