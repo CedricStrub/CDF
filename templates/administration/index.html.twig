@@ -14,94 +14,136 @@
     <div class="carte">
         <div class="carte-h">Formation</div>
         <div class="carte-m">
-            <a onclick="A('fo')"><div class="carte-l">Ajouter</div></a>
-            <a onclick="M('fo')"><div class="carte-r">Modifier</div></a>
+            <a onclick="openNav('foA')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="openNav('foM')"><div class="carte-r">Modifier</div></a>
         </div>
-        <a onclick="S('fo')"><div class="carte-f">Supprimer</div></a>
+        <a onclick="openNav('foS')"><div class="carte-f">Supprimer</div></a>
     </div>
     <div class="carte">
         <div class="carte-h">Session</div>
         <div class="carte-m">
-            <a onclick="A('se')"><div class="carte-l">Ajouter</div></a>
-            <a onclick="M('se')"><div class="carte-r">Modifier</div></a>
+            <a onclick="openNav('seA')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="openNav('seM')"><div class="carte-r">Modifier</div></a>
         </div>
-        <a onclick="S('se')"><div class="carte-f">Supprimer</div></a>
+        <a onclick="openNav('seS')"><div class="carte-f">Supprimer</div></a>
     </div>
     <div class="carte">
         <div class="carte-h">Stagiaire</div>
         <div class="carte-m">
-            <a onclick="A('st')"><div class="carte-l">Ajouter</div></a>
-            <a onclick="M('st')"><div class="carte-r">Modifier</div></a>
+            <a onclick="openNav('stA')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="openNav('stM')"><div class="carte-r">Modifier</div></a>
         </div>
-        <a onclick="S('st')"><div class="carte-f">Supprimer</div></a>
+        <a onclick="openNav('stS')"><div class="carte-f">Supprimer</div></a>
     </div>
     <div class="carte">
         <div class="carte-h">Formateur</div>
         <div class="carte-m">
-            <a onclick="A('fe')"><div class="carte-l">Ajouter</div></a>
-            <a onclick="M('fe')"><div class="carte-r">Modifier</div></a>
+            <a onclick="openNav('feA')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="openNav('feM')"><div class="carte-r">Modifier</div></a>
         </div>
-        <a onclick="S('fe')"><div class="carte-f">Supprimer</div></a>
+        <a onclick="openNav('feS')"><div class="carte-f">Supprimer</div></a>
     </div>
     <div class="carte">
         <div class="carte-h">Modules</div>
         <div class="carte-m">
-            <a onclick="A('mo')"><div class="carte-l">Ajouter</div></a>
-            <a onclick="M('mo')"><div class="carte-r">Modifier</div></a>
+            <a onclick="openNav('moA')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="openNav('moM')"><div class="carte-r">Modifier</div></a>
         </div>
-        <a onclick="S('mo')"><div class="carte-f">Supprimer</div></a>
+        <a onclick="openNav('moS')"><div class="carte-f">Supprimer</div></a>
     </div>
     <div class="carte">
         <div class="carte-h">Categories</div>
         <div class="carte-m">
-            <a onclick="A('ca')"><div class="carte-l">Ajouter</div></a>
-            <a onclick="M('ca')"><div class="carte-r">Modifier</div></a>
+            <a onclick="openNav('caA')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="openNav('caM')"><div class="carte-r">Modifier</div></a>
         </div>
-        <a onclick="S('ca')"><div class="carte-f">Supprimer</div></a>
+        <a onclick="openNav('caS')"><div class="carte-f">Supprimer</div></a>
     </div>
 </div>
 </div>
 
 
-<div id="fo" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('fo')">&times;</a>
+<div id="foA" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('foA')">&times;</a>
     <div class="overlay-content">
         {{ form(formAddFormation) }}
     </div>
 </div>
 
-<div id="se" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('se')">&times;</a>
+<div id="seA" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('seA')">&times;</a>
     <div class="overlay-content">
         {{ form(formAddSession) }}
     </div>
 </div>
 
-<div id="st" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('st')">&times;</a>
+<div id="stA" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('stA')">&times;</a>
     <div class="overlay-content">
         {{ form(formAddStagiaire) }}
     </div>
 </div>
 
-<div id="fe" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('fe')">&times;</a>
+<div id="feA" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('feA')">&times;</a>
     <div class="overlay-content">
         {{ form(formAddFormateur) }}
     </div>
 </div>
 
-<div id="mo" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('mo')">&times;</a>
+<div id="moA" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('moA')">&times;</a>
     <div class="overlay-content">
         {{ form(formAddModules) }}
     </div>
 </div>
 
-<div id="ca" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('ca')">&times;</a>
+<div id="caA" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('caA')">&times;</a>
     <div class="overlay-content">
         {{ form(formAddCategorie) }}
+    </div>
+</div>
+
+<div id="foM" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('foM')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formFormation) }}
+    </div>
+</div>
+
+<div id="seM" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('seM')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formSession) }}
+    </div>
+</div>
+
+<div id="stM" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('stM')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formStagiaire) }}
+    </div>
+</div>
+
+<div id="feM" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('feM')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formFormateur) }}
+    </div>
+</div>
+
+<div id="moM" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('moM')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formModules) }}
+    </div>
+</div>
+
+<div id="caM" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('caM')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formCategorie) }}
     </div>
 </div>
 

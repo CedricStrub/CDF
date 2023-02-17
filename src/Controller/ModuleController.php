@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Modules;
 use App\Entity\Categorie;
 use App\Entity\Programme;
+use App\Form\ModulesAddType;
 use App\Form\CategorieACType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +54,26 @@ class ModuleController extends AbstractController
 			'formModule' => $formModule,
 			'modules' => $modules,
 		]);
+	}
+
+	#[Route('/module/modify/{id}', name:'modify_module')]
+	public function modify( ManagerRegistry $doctrine,$id, Request $request)
+	{
+		$module = $doctrine->getRepository(Modules::class)->findOneBy(['id' => $id]);
+
+		$formModifyModules = $this->createForm(ModulesAddType::class, $module);
+		$formModifyModules->handleRequest($request);
+
+		if ($formModifyModules->isSubmitted() && $formModifyModules->isValid()) {
+			$em = $doctrine->getManager();
+			$em->flush();
+
+			return $this->redirectToRoute('app_administration');
+		}
+	return $this->render('module/modify.html.twig', [
+		'controller_name' => 'AdministrationController',
+		'formModifyModules' => $formModifyModules->createView(),
+	]);
 	}
 
 }

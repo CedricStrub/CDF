@@ -6,6 +6,7 @@ use App\Entity\Session;
 use App\Entity\Formation;
 use App\Entity\Programme;
 use App\Form\SessionACType;
+use App\Form\FormationAddType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -95,6 +96,27 @@ class FormationController extends AbstractController
 		]);
 	}
 
+	#[Route('/formation/modify/{id}', name:'modify_formation')]
+	public function modify( ManagerRegistry $doctrine,$id, Request $request)
+	{
+		$formation = $doctrine->getRepository(Formation::class)->findOneBy(['id' => $id]);
+
+		$formModifyFormation = $this->createForm(FormationAddType::class, $formation);
+		$formModifyFormation->handleRequest($request);
+
+		if ($formModifyFormation->isSubmitted() && $formModifyFormation->isValid()) {
+			$em = $doctrine->getManager();
+			$em->flush();
+
+			return $this->redirectToRoute('app_administration');
+		}
+	return $this->render('formation/modify.html.twig', [
+		'controller_name' => 'AdministrationController',
+		'formModifyFormation' => $formModifyFormation->createView(),
+	]);
+	}
+	
+
 
 	#[Route('/formation/{id}', name: 'show_formation')]
 	public function show(Formation $formation, ManagerRegistry $doctrine, $id = null, Request $request): Response
@@ -155,7 +177,7 @@ class FormationController extends AbstractController
 			'progression' => $progression,
 		];
 
-		$Session = new Session;;
+		$Session = new Session;
 		$formSession = $this->createForm(SessionACType::class, $Session);
 		$formSession->handleRequest($request);
 

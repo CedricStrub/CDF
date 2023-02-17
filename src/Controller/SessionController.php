@@ -69,6 +69,26 @@ class SessionController extends AbstractController
 		]);
 	}
 
+	#[Route('/session/modify/{id}', name:'modify_session')]
+	public function modify( ManagerRegistry $doctrine,$id, Request $request)
+	{
+		$session = $doctrine->getRepository(Session::class)->findOneBy(['id' => $id]);
+
+		$formModifySession = $this->createForm(SessionAddType::class, $session);
+		$formModifySession->handleRequest($request);
+
+		if ($formModifySession->isSubmitted() && $formModifySession->isValid()) {
+			$em = $doctrine->getManager();
+			$em->flush();
+
+			return $this->redirectToRoute('app_administration');
+		}
+	return $this->render('session/modify.html.twig', [
+		'controller_name' => 'AdministrationController',
+		'formModifySession' => $formModifySession->createView(),
+	]);
+	}
+
 	#[route('/session/{session}&{route}', name: 'remove_session')]
 	public function remove(ManagerRegistry $doctrine, Session $session, $route)
 	{

@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Session;
 use App\Entity\Formateur;
 use App\Entity\Programme;
+use App\Form\FormateurAddType;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -56,4 +58,24 @@ class FormateurController extends AbstractController
             'data' => $data,
         ]);
     }
+
+    #[Route('/formateur/modify/{id}', name:'modify_formateur')]
+	public function modify( ManagerRegistry $doctrine,$id, Request $request)
+	{
+		$formateur = $doctrine->getRepository(Formateur::class)->findOneBy(['id' => $id]);
+
+		$formModifyFormateur = $this->createForm(FormateurAddType::class, $formateur);
+		$formModifyFormateur->handleRequest($request);
+
+		if ($formModifyFormateur->isSubmitted() && $formModifyFormateur->isValid()) {
+			$em = $doctrine->getManager();
+			$em->flush();
+
+			return $this->redirectToRoute('app_administration');
+		}
+	return $this->render('formateur/modify.html.twig', [
+		'controller_name' => 'AdministrationController',
+		'formModifyFormateur' => $formModifyFormateur->createView(),
+	]);
+	}
 }

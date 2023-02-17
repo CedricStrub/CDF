@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Session;
 use App\Entity\Stagiaire;
+use App\Form\StagiaireAddType;
 use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,5 +56,25 @@ class StagiaireController extends AbstractController
 			$em->remove($stagiaire);
 		}
 		$em->flush();
+	}
+
+	#[Route('/stagiaire/modify/{id}', name:'modify_stagiaire')]
+	public function modify( ManagerRegistry $doctrine,$id, Request $request)
+	{
+		$stagiaire = $doctrine->getRepository(Stagiaire::class)->findOneBy(['id' => $id]);
+
+		$formModifyStagiaire = $this->createForm(StagiaireAddType::class, $stagiaire);
+		$formModifyStagiaire->handleRequest($request);
+
+		if ($formModifyStagiaire->isSubmitted() && $formModifyStagiaire->isValid()) {
+			$em = $doctrine->getManager();
+			$em->flush();
+
+			return $this->redirectToRoute('app_administration');
+		}
+	return $this->render('stagiaire/modify.html.twig', [
+		'controller_name' => 'AdministrationController',
+		'formModifyStagiaire' => $formModifyStagiaire->createView(),
+	]);
 	}
 }

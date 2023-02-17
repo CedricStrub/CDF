@@ -14,6 +14,12 @@ use App\Form\CategorieAddType;
 use App\Form\FormateurAddType;
 use App\Form\FormationAddType;
 use App\Form\StagiaireAddType;
+use App\Form\ModulesModifyType;
+use App\Form\SessionModifyType;
+use App\Form\CategorieModifyType;
+use App\Form\FormateurModifyType;
+use App\Form\FormationModifyType;
+use App\Form\StagiaireModifyType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -98,6 +104,67 @@ class AdministrationController extends AbstractController
 			return $this->redirectToRoute('app_administration');
 		}
 
+        $formation = new Formation;
+        $formFormation = $this->createForm(FormationModifyType::class, $formation);
+        $formFormation->handleRequest($request);
+
+        if ($formFormation->isSubmitted() && $formFormation->isValid()) {
+            $id = $formFormation->get('intitule')->getData();
+            
+            return $this->redirectToRoute('modify_formation',['id' => $id]);
+        }
+
+        $session = new Session;
+        $formSession = $this->createForm(SessionModifyType::class, $session);
+        $formSession->handleRequest($request);
+
+        if ($formSession->isSubmitted() && $formSession->isValid()) {
+            $id = $formSession->get('intitule')->getData();
+            
+            return $this->redirectToRoute('modify_session',['id' => $id]);
+        }
+
+        $stagiaire = new Stagiaire;
+        $formStagiaire = $this->createForm(StagiaireModifyType::class, $stagiaire);
+        $formStagiaire->handleRequest($request);
+
+        if ($formStagiaire->isSubmitted() && $formStagiaire->isValid()) {
+            $id = $formStagiaire->get('nom')->getData();
+            
+            return $this->redirectToRoute('modify_stagiaire',['id' => $id]);
+        }
+
+        $formateur = new Formateur;
+        $formFormateur = $this->createForm(FormateurModifyType::class, $formateur);
+        $formFormateur->handleRequest($request);
+
+        if ($formFormateur->isSubmitted() && $formFormateur->isValid()) {
+            $id = $formFormateur->get('nom')->getData();
+            
+            return $this->redirectToRoute('modify_formateur',['id' => $id]);
+        }
+
+        $modules = new Modules;
+        $formModules = $this->createForm(ModulesModifyType::class, $modules);
+        $formModules->handleRequest($request);
+
+        if ($formModules->isSubmitted() && $formModules->isValid()) {
+            $id = $formModules->get('nom')->getData();
+            
+            return $this->redirectToRoute('modify_module',['id' => $id]);
+        }
+
+        $categorie = new Categorie;
+        $formCategorie = $this->createForm(CategorieModifyType::class, $categorie);
+        $formCategorie->handleRequest($request);
+
+        if ($formCategorie->isSubmitted() && $formCategorie->isValid()) {
+            $id = $formCategorie->get('nom')->getData();
+            
+            return $this->redirectToRoute('modify_categorie',['id' => $id]);
+        }
+
+
         return $this->render('administration/index.html.twig', [
             'controller_name' => 'AdministrationController',
             'formAddSession' => $formAddSession->createView(),
@@ -106,6 +173,12 @@ class AdministrationController extends AbstractController
             'formAddFormation' => $formAddFormation->createView(),
             'formAddModules' => $formAddModules->createView(),
             'formAddStagiaire' => $formAddStagiaire->createView(),
+            'formFormation' => $formFormation->createView(),
+            'formSession' => $formSession->createView(),
+            'formStagiaire' => $formStagiaire->createView(),
+            'formFormateur' => $formFormateur->createView(),
+            'formModules' => $formModules->createView(),
+            'formCategorie' => $formCategorie->createView(),
         ]);
     }
 
