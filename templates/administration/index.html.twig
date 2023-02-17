@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Stagiaire{% endblock %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/administration.css') }}" />
+
+<div class="forma">
+<div class="title-ctn">
+    <div class="title">Administration</div>
+</div>
+<div class="carte-ctn">
+    <div class="carte">
+        <div class="carte-h">Formation</div>
+        <div class="carte-m">
+            <a onclick="A('fo')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="M('fo')"><div class="carte-r">Modifier</div></a>
+        </div>
+        <a onclick="S('fo')"><div class="carte-f">Supprimer</div></a>
+    </div>
+    <div class="carte">
+        <div class="carte-h">Session</div>
+        <div class="carte-m">
+            <a onclick="A('se')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="M('se')"><div class="carte-r">Modifier</div></a>
+        </div>
+        <a onclick="S('se')"><div class="carte-f">Supprimer</div></a>
+    </div>
+    <div class="carte">
+        <div class="carte-h">Stagiaire</div>
+        <div class="carte-m">
+            <a onclick="A('st')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="M('st')"><div class="carte-r">Modifier</div></a>
+        </div>
+        <a onclick="S('st')"><div class="carte-f">Supprimer</div></a>
+    </div>
+    <div class="carte">
+        <div class="carte-h">Formateur</div>
+        <div class="carte-m">
+            <a onclick="A('fe')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="M('fe')"><div class="carte-r">Modifier</div></a>
+        </div>
+        <a onclick="S('fe')"><div class="carte-f">Supprimer</div></a>
+    </div>
+    <div class="carte">
+        <div class="carte-h">Modules</div>
+        <div class="carte-m">
+            <a onclick="A('mo')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="M('mo')"><div class="carte-r">Modifier</div></a>
+        </div>
+        <a onclick="S('mo')"><div class="carte-f">Supprimer</div></a>
+    </div>
+    <div class="carte">
+        <div class="carte-h">Categories</div>
+        <div class="carte-m">
+            <a onclick="A('ca')"><div class="carte-l">Ajouter</div></a>
+            <a onclick="M('ca')"><div class="carte-r">Modifier</div></a>
+        </div>
+        <a onclick="S('ca')"><div class="carte-f">Supprimer</div></a>
+    </div>
+</div>
+</div>
+
+
+<div id="fo" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('fo')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formAddFormation) }}
+    </div>
+</div>
+
+<div id="se" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('se')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formAddSession) }}
+    </div>
+</div>
+
+<div id="st" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('st')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formAddStagiaire) }}
+    </div>
+</div>
+
+<div id="fe" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('fe')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formAddFormateur) }}
+    </div>
+</div>
+
+<div id="mo" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('mo')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formAddModules) }}
+    </div>
+</div>
+
+<div id="ca" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('ca')">&times;</a>
+    <div class="overlay-content">
+        {{ form(formAddCategorie) }}
+    </div>
+</div>
+
+<script src="{{ asset('js/administration.js') }}"></script>
+
+
+{% endblock %}
