@@ -4,11 +4,11 @@
 
 {% block body %}
 
-<link rel="stylesheet" href={{ asset("/formation.css") }}>
+<link rel="stylesheet" href={{ asset("/css/module.css") }}>
 <div class="forma">
     <div class="title-ctn">
         <div class="title">{{ module.nom }}</div>
-        <span>{{ module.categorie }}</span>
+        <div class="title">Catégorie : {{ module.categorie }}</div>
     </div>
     <div class="ctn-tab">
         <div class="cadre-tab">

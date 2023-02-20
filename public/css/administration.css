@@ -54,7 +54,7 @@ body{
     width: 100%;
     height: 80px;
     text-align: center;
-    color: var(--txt-high);
+    color: var(--txt-low);
     line-height: 60px;
     font-size: 60px;
     letter-spacing: 5px;
@@ -79,7 +79,7 @@ body{
 }
 
 .carte-l:hover{
-    color: #66dd80;
+    color: var(--txt-high);
 }
 
 .carte-r{
@@ -91,7 +91,7 @@ body{
 }
 
 .carte-r:hover{
-    color: #e3d8a8;
+    color: var(--txt-high);
 }
 
 .carte-f{
@@ -103,7 +103,7 @@ body{
 }
 
 .carte-f:hover{
-    color: #da5c65;
+    color: var(--txt-high);
 }
 
 .carte a{

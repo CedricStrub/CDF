@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ModulesAddType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -27,8 +28,7 @@ class ModulesAddType extends AbstractType
             ])
             ->add('categorie', EntityType::class,[
                 'class' => Categorie::class,
-                'multiple' => true,
-                'attr' => ['class' => 'input-multi'],
+                'attr' => ['class' => 'input'],
                 'label_attr' => [
                     'class' => 'lab',
                 ],

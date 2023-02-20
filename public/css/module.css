@@ -1,0 +1,174 @@
+body{
+    background: var(--ter);
+}
+
+[data-href] { cursor: pointer; }
+
+.forma{
+    padding: 20px;
+}
+
+.title-ctn{
+    width: 100%;
+    height: 20vh;
+    margin-bottom: 40px;
+}
+
+.title{
+    width: 100%;
+    height: 80px;
+    background: var(--qua);
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+    color: var(--txt-high);
+    line-height: 80px;
+    box-shadow: 0px 0px 5px 3px black;
+    caret-color: transparent;
+    margin-bottom: 20px;
+}
+
+.search-ctn{
+    width: calc(100% - 40px);
+    height: 15vh;
+    padding: 20px;
+    background: var(--qua);
+    color: var(--txt-high);
+    box-shadow: 0px 0px 5px 3px black;
+    caret-color: transparent;
+}
+
+.titre{
+    background: var(--qua);
+    padding-bottom: 20px;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--txt-low);
+}
+
+.search{
+    width: 100%;
+    height: 50px;
+    box-shadow: 0px 0px 2px 2px var(--ter);
+}
+
+.search .bar{
+    width: 100%;
+    border-color: var(--tab-brd);
+    color: var(--tab-brd);
+    font-size: 30px;
+    line-height: 70px;
+    font-weight: 600;
+}
+
+.search .bouton{
+    width: 20%;
+    border: solid 1px;
+    border-color: var(--tab-brd);
+    border-left: none;
+    color: var(--txt-low);
+    text-align: center;
+    font-size: 30px;
+    line-height: 70px;
+    font-weight: 600;
+}
+
+.ctn-tab{
+    width: calc(100% - 40px);
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--qua);
+    box-shadow: 0px 0px 5px 3px black;
+    caret-color: transparent;
+}
+
+.cadre-tab{
+    width: 100%;
+    height: fit-content;
+    background: var(--qua);
+    font-size: 30px;
+    color: var(--txt-high);
+    caret-color: transparent;
+}
+
+.ctn-tab .titre{
+    color: var(--txt-low);
+    font-size: 40px;
+    padding-bottom: 20px;
+}
+
+table{
+    width: 100%;
+    border: solid 1px;
+    border-color: var(--txt-low);
+    border-collapse: collapse;
+    box-shadow: 0px 0px 2px 2px var(--ter);
+}
+
+td{
+    padding: 5px;
+    border: solid 1px;
+    border-color: var(--tab-brd);
+}
+
+thead{
+    color: var(--ter);
+    font-weight: 800;
+    background: var(--tab-high);
+}
+
+tbody{
+    font-size: 25px;
+}
+
+.plan tbody td{
+    height: 150px;
+    width: 20%;
+}
+
+#form_formation{
+    background: var(--qua);
+    width: 500px;
+    height: 100px;
+}
+
+.flex-ctn{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.carte{
+    width: 360px;
+    height: 100px;
+    background: var(--qua);
+    border: solid 2px;
+    margin: 5px;
+}
+
+.miniature{
+    max-width: auto;
+    max-height: 100px;
+}
+
+.carte-info{
+    width: 70%;
+    height: 100%;
+    float: right;
+}
+
+.carte-n{
+    width: calc(100%-15px);
+    height: 50%;
+    padding-left: 15px;
+    line-height: 150%;
+}
+
+.carte-p{
+    width: calc(100%-15px);
+    height: 50%;
+    padding-left: 15px;
+    line-height: 150%;
+}

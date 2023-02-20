@@ -71,8 +71,11 @@ class FormationController extends AbstractController
 
 				$progression = ($date->diff($dateD)->d) / $percent;
 			}
-
-			$modules = count($modules);
+			
+			if($modules)
+				$modules = count($modules);
+			else
+				$modules = 0;
 			$sessions = count($sessions);
 
 			$d = [
