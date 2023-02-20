@@ -1,24 +1,29 @@
 .ts-control input[type="select-one"] {
-	width: 800px;
+	width: 100%;
 	height: 50px;
 	background-color: var(--qua) !important;
-	background: var(--qua) !important;
 	color: var(--txt-high);
 	font-size: 25px;
 	padding-left: 30px;
 }
 
 .ts-control {
-	width: 800px;
+	width: 100%;
 	height: 50px;
-	background: var(--ter) !important;
-	border-color: var(--qua) !important;
+	background: var(--qua) !important;
+	border-color: var(--ter) !important;
+	border-radius: 0px;
+	
+}
+
+.ts-wrapper.single .ts-control{
+	box-shadow: 0px 2px 3px 0px var(--qua);
 }
 
 .ts-dropdown {
-	width: 800px;
+	width: 100%;
 	background-color: var(--qua);
-	color: var(--txt-dark);
+	color: var(--txt-high);
 	font-size: 15px;
 }
 

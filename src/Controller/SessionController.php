@@ -89,9 +89,11 @@ class SessionController extends AbstractController
 	]);
 	}
 
-	#[route('/session/{session}&{route}', name: 'remove_session')]
-	public function remove(ManagerRegistry $doctrine, Session $session, $route)
+	#[route('/session/{session}&{route}', name: 'delete_session')]
+	public function remove(ManagerRegistry $doctrine,$session, $route)
 	{
+		$session = $doctrine->getRepository(Session::class)->findOneBy(['id' => $session]);
+		
 		$em = $doctrine->getManager();
 		$em->remove($session);
 		$em->flush();

@@ -32,10 +32,12 @@ class SessionACType extends AbstractType
 			->add('dateDebut', DateType::class, [
 				'required' => true,
 				'widget' => 'single_text',
-				'label' => 'Date de début'
+				'label' => 'Date de début',
+				'attr' => ['class' => 'calendar']
 			])
 			->add('submit', SubmitType::class, [
 				'label' => 'Ajouter Session',
+				'attr' => ['class' => 'submit']
 			]);
 	}
 

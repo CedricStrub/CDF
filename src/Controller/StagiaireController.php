@@ -47,15 +47,16 @@ class StagiaireController extends AbstractController
 		return $this->redirectToRoute($route, ['id' => $id]);
 	}
 
-	#[Route('/stagiaire/{id}', name: 'delete_stagiaire')]
-	public function delete(ManagerRegistry $doctrine, $stagiaire)
+	#[route('/stagiaire/{stagiaire}&{route}', name: 'delete_stagiaire')]
+	public function delete(ManagerRegistry $doctrine,$stagiaire, $route)
 	{
+		$stagiaire = $doctrine->getRepository(Stagiaire::class)->findOneBy(['id' => $stagiaire]);
+		
 		$em = $doctrine->getManager();
-		$stagiaire = $em->getRepository(Stagiaire::class)->find($stagiaire);
-		if ($stagiaire) {
-			$em->remove($stagiaire);
-		}
+		$em->remove($stagiaire);
 		$em->flush();
+
+		return $this->redirectToRoute($route);
 	}
 
 	#[Route('/stagiaire/modify/{id}', name:'modify_stagiaire')]

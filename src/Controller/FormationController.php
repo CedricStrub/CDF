@@ -25,7 +25,6 @@ class FormationController extends AbstractController
 			->add('formation', EntityType::class, [
 				'class' => Formation::class,
 				'autocomplete' => true,
-				'placeholder' => 'Intitulé',
 				'attr' => ['class' => 'bar']
 			])
 			->getForm();
@@ -115,7 +114,18 @@ class FormationController extends AbstractController
 		'formModifyFormation' => $formModifyFormation->createView(),
 	]);
 	}
-	
+
+	#[route('/formation/{formation}&{route}', name: 'delete_formation')]
+	public function remove(ManagerRegistry $doctrine,$formation, $route)
+	{
+		$formation = $doctrine->getRepository(Formation::class)->findOneBy(['id' => $formation]);
+		
+		$em = $doctrine->getManager();
+		$em->remove($formation);
+		$em->flush();
+
+		return $this->redirectToRoute($route, array('id' => $formation->getId()));
+	}
 
 
 	#[Route('/formation/{id}', name: 'show_formation')]

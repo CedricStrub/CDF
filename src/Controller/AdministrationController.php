@@ -24,6 +24,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdministrationController extends AbstractController
@@ -164,6 +166,108 @@ class AdministrationController extends AbstractController
             return $this->redirectToRoute('modify_categorie',['id' => $id]);
         }
 
+        $formFormationDelete = $this->createFormBuilder()
+			->add('formation', EntityType::class, [
+				'class' => Formation::class,
+				'autocomplete' => true,
+			])
+            ->add('submit', SubmitType::class, [
+				'label' => 'Supprimer Formation',
+			])
+			->getForm();
+        $formFormationDelete->handleRequest($request);
+
+        if ($formFormationDelete->isSubmitted() && $formFormationDelete->isValid()) {
+            $id = $formFormationDelete->get('formation')->getData()->getId();
+            
+            return $this->redirectToRoute('delete_formation',['formation' => $id,'route' => 'app_administration']);
+        }
+
+        $formSessionDelete = $this->createFormBuilder()
+			->add('session', EntityType::class, [
+				'class' => Session::class,
+				'autocomplete' => true,
+			])
+            ->add('submit', SubmitType::class, [
+				'label' => 'Supprimer Session',
+			])
+			->getForm();
+        $formSessionDelete->handleRequest($request);
+
+        if ($formSessionDelete->isSubmitted() && $formSessionDelete->isValid()) {
+            $id = $formSessionDelete->get('session')->getData()->getId();
+
+            return $this->redirectToRoute('delete_session',['session' => $id,'route' => 'app_administration']);
+        }
+
+        $formStagiaireDelete = $this->createFormBuilder()
+			->add('stagiaire', EntityType::class, [
+				'class' => Stagiaire::class,
+				'autocomplete' => true,
+			])
+            ->add('submit', SubmitType::class, [
+				'label' => 'Supprimer Stagiaire',
+			])
+			->getForm();
+        $formStagiaireDelete->handleRequest($request);
+
+        if ($formStagiaireDelete->isSubmitted() && $formStagiaireDelete->isValid()) {
+            $id = $formStagiaireDelete->get('stagiaire')->getData()->getId();
+
+            return $this->redirectToRoute('delete_stagiaire',['stagiaire' => $id,'route' => 'app_administration']);
+        }
+
+        $formFormateurDelete = $this->createFormBuilder()
+			->add('formateur', EntityType::class, [
+				'class' => Formateur::class,
+				'autocomplete' => true,
+			])
+            ->add('submit', SubmitType::class, [
+				'label' => 'Supprimer Formateur',
+			])
+			->getForm();
+        $formFormateurDelete->handleRequest($request);
+
+        if ($formFormateurDelete->isSubmitted() && $formFormateurDelete->isValid()) {
+            $id = $formFormateurDelete->get('formateur')->getData()->getId();
+
+            return $this->redirectToRoute('delete_formateur',['formateur' => $id,'route' => 'app_administration']);
+        }
+
+        $formModulesDelete = $this->createFormBuilder()
+			->add('module', EntityType::class, [
+				'class' => Modules::class,
+				'autocomplete' => true,
+			])
+            ->add('submit', SubmitType::class, [
+				'label' => 'Supprimer Module',
+			])
+			->getForm();
+        $formModulesDelete->handleRequest($request);
+
+        if ($formModulesDelete->isSubmitted() && $formModulesDelete->isValid()) {
+            $id = $formModulesDelete->get('module')->getData()->getId();
+
+            return $this->redirectToRoute('delete_module',['module' => $id,'route' => 'app_administration']);
+        }
+
+        $formCategorieDelete = $this->createFormBuilder()
+			->add('categorie', EntityType::class, [
+				'class' => Categorie::class,
+				'autocomplete' => true,
+			])
+            ->add('submit', SubmitType::class, [
+				'label' => 'Supprimer Categorie',
+			])
+			->getForm();
+        $formCategorieDelete->handleRequest($request);
+
+        if ($formCategorieDelete->isSubmitted() && $formCategorieDelete->isValid()) {
+            $id = $formCategorieDelete->get('categorie')->getData()->getId();
+
+            return $this->redirectToRoute('delete_categorie',['categorie' => $id,'route' => 'app_administration']);
+        }
+
 
         return $this->render('administration/index.html.twig', [
             'controller_name' => 'AdministrationController',
@@ -179,6 +283,12 @@ class AdministrationController extends AbstractController
             'formFormateur' => $formFormateur->createView(),
             'formModules' => $formModules->createView(),
             'formCategorie' => $formCategorie->createView(),
+            'formFormationDelete' => $formFormationDelete->createView(),
+            'formSessionDelete' => $formSessionDelete->createView(),
+            'formStagiaireDelete' => $formStagiaireDelete->createView(),
+            'formFormateurDelete' => $formFormateurDelete->createView(),
+            'formModulesDelete' => $formModulesDelete->createView(),
+            'formCategorieDelete' => $formCategorieDelete->createView(),
         ]);
     }
 

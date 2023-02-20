@@ -45,7 +45,7 @@
         <td>
           <a
             href="{{
-              path('remove_session', {
+              path('delete_session', {
                 session: session.id,
                 route: 'show_formation'
               })
@@ -63,7 +63,9 @@
   <div class="titre">Ajouter Sessions</div>
   {{ form_start(formSe) }}
   <div class="search">
-    {{ form_row(formSe, { label: false }) }}
+    {{ form_row(formSe.intitule, { label: false }) }}
+    {{ form_row(formSe.dateDebut, { label: false }) }}
+    {{ form_row(formSe.submit) }}
   </div>
   {{ form_end(formSe) }}
 </div>

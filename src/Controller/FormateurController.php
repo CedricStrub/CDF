@@ -59,6 +59,18 @@ class FormateurController extends AbstractController
         ]);
     }
 
+	#[route('/formateur/delete/{formateur}&{route}', name: 'delete_formateur')]
+	public function remove(ManagerRegistry $doctrine,$formateur, $route)
+	{
+		$formateur = $doctrine->getRepository(Formateur::class)->findOneBy(['id' => $formateur]);
+		
+		$em = $doctrine->getManager();
+		$em->remove($formateur);
+		$em->flush();
+
+		return $this->redirectToRoute($route);
+	}
+
     #[Route('/formateur/modify/{id}', name:'modify_formateur')]
 	public function modify( ManagerRegistry $doctrine,$id, Request $request)
 	{

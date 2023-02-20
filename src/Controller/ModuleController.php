@@ -56,6 +56,18 @@ class ModuleController extends AbstractController
 		]);
 	}
 
+	#[route('/module/delete/{module}&{route}', name: 'delete_module')]
+	public function remove(ManagerRegistry $doctrine,$module, $route)
+	{
+		$module = $doctrine->getRepository(Modules::class)->findOneBy(['id' => $module]);
+		
+		$em = $doctrine->getManager();
+		$em->remove($module);
+		$em->flush();
+
+		return $this->redirectToRoute($route);
+	}
+
 	#[Route('/module/modify/{id}', name:'modify_module')]
 	public function modify( ManagerRegistry $doctrine,$id, Request $request)
 	{

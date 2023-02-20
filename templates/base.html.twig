@@ -31,19 +31,21 @@
                 <div class="btn"><a href="{{ path('app_stagiaire') }}">Stagiaire</a></div>
                 <div class="btn"><a href="{{ path('app_formateur') }}">Formateur</a></div>
                 <div class="btn"><a href="{{ path('app_module') }}">Module</a></div>
-                <div class="portrait-ctn">
-                    <a href="{{ path('app_profil') }}">
-                        <div class="portrait">
-                            <img src="{{ asset('Formateur/' ~ app.user.formateur.portrait) }}" alt="">
+                <div class="lock">
+                    <div class="portrait-ctn">
+                        <a href="{{ path('app_profil') }}">
+                            <div class="portrait">
+                                <img src="{{ asset('Formateur/' ~ app.user.formateur.portrait) }}" alt="">
+                            </div>
+                        </a>
+                        <span class="portrait-txt pos1">{{ app.user.formateur.nom }}</span>
+                        <span class="portrait-txt pos2">{{ app.user.formateur.prenom }}</span>
+                        <div class="btn-alt"><a href="{{ path('app_logout') }}"><img class="icon" src="{{ asset("/logout.png") }}" ></a>
+                        <span class="icon-txt">Deconnexion</span>
                         </div>
-                    </a>
-                    <span class="portrait-txt pos1">{{ app.user.formateur.nom }}</span>
-                    <span class="portrait-txt pos2">{{ app.user.formateur.prenom }}</span>
-                    <div class="btn-alt"><a href="{{ path('app_logout') }}"><img class="icon" src="{{ asset("/logout.png") }}" ></a>
-                    <span class="icon-txt">Deconnexion</span>
                     </div>
+                    <div class="btn-admin"><a href="{{ path('app_administration') }}">Administration</a></div>
                 </div>
-                <div class="btn-admin"><a href="{{ path('app_administration') }}">Administration</a></div>
             </div>
         </div>
         {% endif %}

@@ -21,6 +21,18 @@ class CategorieController extends AbstractController
         ]);
     }
 
+	#[route('/categorie/{categorie}&{route}', name: 'delete_categorie')]
+	public function remove(ManagerRegistry $doctrine,$categorie, $route)
+	{
+		$categorie = $doctrine->getRepository(Categorie::class)->findOneBy(['id' => $categorie]);
+		
+		$em = $doctrine->getManager();
+		$em->remove($categorie);
+		$em->flush();
+
+		return $this->redirectToRoute($route, array('id' => $categorie->getId()));
+	}
+
     #[Route('/categorie/modify/{id}', name:'modify_categorie')]
 	public function modify( ManagerRegistry $doctrine,$id, Request $request)
 	{
