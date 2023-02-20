@@ -24,10 +24,17 @@ class SessionModifyType extends AbstractType
         ->add('intitule', ChoiceType::class, [
             'choices' => $this->getSessionType(),
             'autocomplete' => true,
-            'label' => false,
+            'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
         ])
         ->add('submit', SubmitType::class, [
             'label' => 'Modifier Session',
+            'attr' => ['class' => 'bouton'],
         ]);
     }
 

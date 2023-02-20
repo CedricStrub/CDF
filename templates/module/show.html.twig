@@ -27,14 +27,12 @@
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Intitulé</td>
                         <td>Categorie</td>
                     </thead>
                     <tbody>
-                    {% for module in modules %}
+                    {% for categorie in categories %}
                         <tr>
-                            <td><a href="{{ path('show_module', {'id': module.id}) }}">{{ module.nom }}</a></td>
-                            <td><a href="{{ path('show_module', {'id': module.id}) }}">{{ module.categorie.nom }}</a></td>
+                            <td>{{ categorie.nom }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

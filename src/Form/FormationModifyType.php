@@ -24,10 +24,17 @@ class FormationModifyType extends AbstractType
         ->add('intitule', ChoiceType::class, [
             'choices' => $this->getFormationType(),
             'autocomplete' => true,
-            'label' => false,
+            'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
         ])
         ->add('submit', SubmitType::class, [
             'label' => 'Modifier Formation',
+            'attr' => ['class' => 'bouton'],
         ]);
     }
 

@@ -24,10 +24,17 @@ class FormateurModifyType extends AbstractType
         ->add('nom', ChoiceType::class, [
             'choices' => $this->getFormateurType(),
             'autocomplete' => true,
-            'label' => false,
+            'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
         ])
         ->add('submit', SubmitType::class, [
             'label' => 'Modifier Formateur',
+            'attr' => ['class' => 'bouton'],
         ]);
     }
 

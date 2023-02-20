@@ -24,10 +24,17 @@ class ModulesModifyType extends AbstractType
         ->add('nom', ChoiceType::class, [
             'choices' => $this->getModulesType(),
             'autocomplete' => true,
-            'label' => false,
+            'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
         ])
         ->add('submit', SubmitType::class, [
             'label' => 'Modifier Modules',
+            'attr' => ['class' => 'bouton'],
         ]);
     }
 

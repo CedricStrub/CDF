@@ -170,9 +170,17 @@ class AdministrationController extends AbstractController
 			->add('formation', EntityType::class, [
 				'class' => Formation::class,
 				'autocomplete' => true,
+                'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
 			])
             ->add('submit', SubmitType::class, [
 				'label' => 'Supprimer Formation',
+                'attr' => ['class' => 'bouton'],
 			])
 			->getForm();
         $formFormationDelete->handleRequest($request);
@@ -187,9 +195,17 @@ class AdministrationController extends AbstractController
 			->add('session', EntityType::class, [
 				'class' => Session::class,
 				'autocomplete' => true,
+                'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
 			])
             ->add('submit', SubmitType::class, [
 				'label' => 'Supprimer Session',
+                'attr' => ['class' => 'bouton'],
 			])
 			->getForm();
         $formSessionDelete->handleRequest($request);
@@ -204,9 +220,17 @@ class AdministrationController extends AbstractController
 			->add('stagiaire', EntityType::class, [
 				'class' => Stagiaire::class,
 				'autocomplete' => true,
+                'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
 			])
             ->add('submit', SubmitType::class, [
 				'label' => 'Supprimer Stagiaire',
+                'attr' => ['class' => 'bouton'],
 			])
 			->getForm();
         $formStagiaireDelete->handleRequest($request);
@@ -221,9 +245,17 @@ class AdministrationController extends AbstractController
 			->add('formateur', EntityType::class, [
 				'class' => Formateur::class,
 				'autocomplete' => true,
+                'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
 			])
             ->add('submit', SubmitType::class, [
 				'label' => 'Supprimer Formateur',
+                'attr' => ['class' => 'bouton'],
 			])
 			->getForm();
         $formFormateurDelete->handleRequest($request);
@@ -238,9 +270,18 @@ class AdministrationController extends AbstractController
 			->add('module', EntityType::class, [
 				'class' => Modules::class,
 				'autocomplete' => true,
+                'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
 			])
             ->add('submit', SubmitType::class, [
 				'label' => 'Supprimer Module',
+
+                'attr' => ['class' => 'bouton'],
 			])
 			->getForm();
         $formModulesDelete->handleRequest($request);
@@ -255,9 +296,17 @@ class AdministrationController extends AbstractController
 			->add('categorie', EntityType::class, [
 				'class' => Categorie::class,
 				'autocomplete' => true,
+                'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
 			])
             ->add('submit', SubmitType::class, [
 				'label' => 'Supprimer Categorie',
+                'attr' => ['class' => 'bouton'],
 			])
 			->getForm();
         $formCategorieDelete->handleRequest($request);

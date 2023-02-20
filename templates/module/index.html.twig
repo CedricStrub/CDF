@@ -16,13 +16,17 @@
                 <table>
                     <thead>
                         <td>Intitulé</td>
-                        <td>Duree</td>
+                        <td>Categorie</td>
                     </thead>
                     <tbody>
                     {% for module in modules %}
                         <tr>
                             <td><a href="{{ path('show_module', {'id': module.id}) }}">{{ module.nom }}</a></td>
+                            {% if module.categorie.nom is defined %}
                             <td><a href="{{ path('show_module', {'id': module.id}) }}">{{ module.categorie.nom }}</a></td>
+                            {% else %}
+                            <td>aucune</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>

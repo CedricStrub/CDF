@@ -24,10 +24,17 @@ class StagiaireModifyType extends AbstractType
         ->add('nom', ChoiceType::class, [
             'choices' => $this->getStagiaireType(),
             'autocomplete' => true,
-            'label' => false,
+            'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
         ])
         ->add('submit', SubmitType::class, [
             'label' => 'Modifier Formation',
+            'attr' => ['class' => 'bouton'],
         ]);
     }
 

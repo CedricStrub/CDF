@@ -16,6 +16,12 @@ class FormationAddType extends AbstractType
         $builder
             ->add('intitule', TextType::class,[
                 'attr' => ['class' => 'input'],
+                'label_attr' => [
+                    'class' => 'lab',
+                ],
+                'row_attr' => [
+                    'class' => 'wrp',
+                ],
             ])
             ->add('submit', SubmitType::class, [
 				'label' => 'Ajouter Formation',

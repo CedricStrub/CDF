@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Stagiaire{% endblock %}
+{% block title %}Administration{% endblock %}
 
 {% block body %}
 
@@ -67,10 +67,10 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('foA')">&times;</a>
     <div class="overlay-content">
         {{ form_start(formAddFormation) }}
-        <div class="lab">
-            {{form_label(formAddFormation, "Intitulé de Formation")}}
+        <div class="lab-form">
+            {{form_label(formAddFormation, "Ajouter une Formation")}}
         </div>
-            {{ form_row(formAddFormation.intitule, {label:false}) }}
+            {{ form_row(formAddFormation.intitule) }}
             {{ form_row(formAddFormation.submit) }}
         {{ form_end(formAddFormation) }}
     </div>
@@ -79,119 +79,238 @@
 <div id="seA" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('seA')">&times;</a>
     <div class="overlay-content">
-        {{ form(formAddSession) }}
+        {{ form_start(formAddSession) }}
+        <div class="lab-form">
+            {{form_label(formAddSession, "Ajouter une Session")}}
+        </div>
+            {{ form_row(formAddSession.intitule) }}
+            {{ form_row(formAddSession.place) }}
+            {{ form_row(formAddSession.dateDebut) }}
+            {{ form_row(formAddSession.dateFin) }}
+            {{ form_row(formAddSession.participer) }}
+            {{ form_row(formAddSession.formateur) }}
+            {{ form_row(formAddSession.formation) }}
+            {{ form_row(formAddSession.submit) }}
+        {{ form_end(formAddSession) }}
     </div>
 </div>
 
 <div id="stA" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('stA')">&times;</a>
     <div class="overlay-content">
-        {{ form(formAddStagiaire) }}
+        {{ form_start(formAddStagiaire) }}
+        <div class="lab-form">
+            {{form_label(formAddStagiaire, "Ajouter un Stagiaire")}}
+        </div>
+            {{ form_row(formAddStagiaire.nom) }}
+            {{ form_row(formAddStagiaire.prenom) }}
+            {{ form_row(formAddStagiaire.email) }}
+            {{ form_row(formAddStagiaire.dateNaissance) }}
+            {{ form_row(formAddStagiaire.sexe) }}
+            {{ form_row(formAddStagiaire.telephone) }}
+            {{ form_row(formAddStagiaire.ville) }}
+            {{ form_row(formAddStagiaire.portrait) }}
+            {{ form_row(formAddStagiaire.submit) }}
+        {{ form_end(formAddStagiaire) }}
     </div>
 </div>
 
 <div id="feA" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('feA')">&times;</a>
     <div class="overlay-content">
-        {{ form(formAddFormateur) }}
+        {{ form_start(formAddFormateur) }}
+        <div class="lab-form">
+            {{form_label(formAddFormateur, "Ajouter un Formateur")}}
+        </div>
+            {{ form_row(formAddFormateur.nom) }}
+            {{ form_row(formAddFormateur.prenom) }}
+            {{ form_row(formAddFormateur.email) }}
+            {{ form_row(formAddFormateur.portrait) }}
+            {{ form_row(formAddFormateur.submit) }}
+        {{ form_end(formAddFormateur) }}
     </div>
 </div>
 
 <div id="moA" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('moA')">&times;</a>
     <div class="overlay-content">
-        {{ form(formAddModules) }}
+        {{ form_start(formAddModules) }}
+        <div class="lab-form">
+            {{form_label(formAddModules, "Ajouter un Modules")}}
+        </div>
+            {{ form_row(formAddModules.nom) }}
+            {{ form_row(formAddModules.categorie) }}
+            {{ form_row(formAddModules.submit) }}
+        {{ form_end(formAddModules) }}
     </div>
 </div>
 
 <div id="caA" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('caA')">&times;</a>
     <div class="overlay-content">
-        {{ form(formAddCategorie) }}
+        {{ form_start(formAddCategorie) }}
+        <div class="lab-form">
+            {{form_label(formAddCategorie, "Ajouter une Categorie")}}
+        </div>
+            {{ form_row(formAddCategorie.nom) }}
+            {{ form_row(formAddCategorie.submit) }}
+        {{ form_end(formAddCategorie) }}
     </div>
 </div>
 
 <div id="foM" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('foM')">&times;</a>
     <div class="overlay-content">
-        {{ form(formFormation) }}
+        {{ form_start(formFormation) }}
+        <div class="lab-form">
+            {{form_label(formFormation, "Modifier une Formation")}}
+        </div>
+            {{ form_row(formFormation.intitule) }}
+            {{ form_row(formFormation.submit) }}
+        {{ form_end(formFormation) }}
     </div>
 </div>
 
 <div id="seM" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('seM')">&times;</a>
     <div class="overlay-content">
-        {{ form(formSession) }}
+        {{ form_start(formSession) }}
+        <div class="lab-form">
+            {{form_label(formSession, "Modifier une Session")}}
+        </div>
+            {{ form_row(formSession.intitule) }}
+            {{ form_row(formSession.submit) }}
+        {{ form_end(formSession) }}
     </div>
 </div>
 
 <div id="stM" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('stM')">&times;</a>
     <div class="overlay-content">
-        {{ form(formStagiaire) }}
+        {{ form_start(formStagiaire) }}
+        <div class="lab-form">
+            {{form_label(formStagiaire, "Modifier un Stagiaire")}}
+        </div>
+            {{ form_row(formStagiaire.nom) }}
+            {{ form_row(formStagiaire.submit) }}
+        {{ form_end(formStagiaire) }}
     </div>
 </div>
 
 <div id="feM" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('feM')">&times;</a>
     <div class="overlay-content">
-        {{ form(formFormateur) }}
+        {{ form_start(formFormateur) }}
+        <div class="lab-form">
+            {{form_label(formFormateur, "Modifier un Formateur")}}
+        </div>
+            {{ form_row(formFormateur.nom) }}
+            {{ form_row(formFormateur.submit) }}
+        {{ form_end(formFormateur) }}
     </div>
 </div>
 
 <div id="moM" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('moM')">&times;</a>
     <div class="overlay-content">
-        {{ form(formModules) }}
+        {{ form_start(formModules) }}
+        <div class="lab-form">
+            {{form_label(formModules, "Modifier un Modules")}}
+        </div>
+            {{ form_row(formModules.nom) }}
+            {{ form_row(formModules.submit) }}
+        {{ form_end(formModules) }}
     </div>
 </div>
 
 <div id="caM" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('caM')">&times;</a>
     <div class="overlay-content">
-        {{ form(formCategorie) }}
+        {{ form_start(formCategorie) }}
+        <div class="lab-form">
+            {{form_label(formCategorie, "Modifier une Categorie")}}
+        </div>
+            {{ form_row(formCategorie.nom) }}
+            {{ form_row(formCategorie.submit) }}
+        {{ form_end(formCategorie) }}
     </div>
 </div>
 
 <div id="foS" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('foS')">&times;</a>
     <div class="overlay-content">
-        {{ form(formFormationDelete) }}
+        {{ form_start(formFormationDelete) }}
+        <div class="lab-form">
+            {{form_label(formFormationDelete, "Supprimer une Formation")}}
+        </div>
+            {{ form_row(formFormationDelete.formation) }}
+            {{ form_row(formFormationDelete.submit) }}
+        {{ form_end(formFormationDelete) }}
     </div>
 </div>
 
 <div id="seS" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('seS')">&times;</a>
     <div class="overlay-content">
-        {{ form(formSessionDelete) }}
+        {{ form_start(formSessionDelete) }}
+        <div class="lab-form">
+            {{form_label(formSessionDelete, "Supprimer une Session")}}
+        </div>
+            {{ form_row(formSessionDelete.session) }}
+            {{ form_row(formSessionDelete.submit) }}
+        {{ form_end(formSessionDelete) }}
     </div>
 </div>
 
 <div id="stS" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('stS')">&times;</a>
     <div class="overlay-content">
-        {{ form(formStagiaireDelete) }}
+        {{ form_start(formStagiaireDelete) }}
+        <div class="lab-form">
+            {{form_label(formStagiaireDelete, "Supprimer un Stagiaire")}}
+        </div>
+            {{ form_row(formStagiaireDelete.stagiaire) }}
+            {{ form_row(formStagiaireDelete.submit) }}
+        {{ form_end(formStagiaireDelete) }}
     </div>
 </div>
 
 <div id="feS" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('feS')">&times;</a>
     <div class="overlay-content">
-        {{ form(formFormateurDelete) }}
+        {{ form_start(formFormateurDelete) }}
+        <div class="lab-form">
+            {{form_label(formFormateurDelete, "Supprimer un Formateur")}}
+        </div>
+            {{ form_row(formFormateurDelete.formateur) }}
+            {{ form_row(formFormateurDelete.submit) }}
+        {{ form_end(formFormateurDelete) }}
     </div>
 </div>
 
 <div id="moS" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('moS')">&times;</a>
     <div class="overlay-content">
-        {{ form(formModulesDelete) }}
+        {{ form_start(formModulesDelete) }}
+        <div class="lab-form">
+            {{form_label(formModulesDelete, "Supprimer un Modules")}}
+        </div>
+            {{ form_row(formModulesDelete.module) }}
+            {{ form_row(formModulesDelete.submit) }}
+        {{ form_end(formModulesDelete) }}
     </div>
 </div>
 
 <div id="caS" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav('caS')">&times;</a>
     <div class="overlay-content">
-        {{ form(formCategorieDelete) }}
+        {{ form_start(formCategorieDelete) }}
+        <div class="lab-form">
+            {{form_label(formCategorieDelete, "Supprimer une Categorie")}}
+        </div>
+            {{ form_row(formCategorieDelete.categorie) }}
+            {{ form_row(formCategorieDelete.submit) }}
+        {{ form_end(formCategorieDelete) }}
     </div>
 </div>
 

@@ -45,14 +45,14 @@ class ModuleController extends AbstractController
 			return $this->redirectToRoute('show_module', ['id' => $module->getId()]);
 		}
 
-		$modules = $doctrine->getRepository(Modules::class)->findAll();
+		$categories = $doctrine->getRepository(Categorie::class)->findAll();
 
 		return $this->render('module/show.html.twig', [
 			'controller_name' => 'ModuleController',
 			'module' => $module,
 			'programme' => $programme,
 			'formModule' => $formModule,
-			'modules' => $modules,
+			'categories' => $categories,
 		]);
 	}
 
