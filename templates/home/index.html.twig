@@ -51,19 +51,23 @@
                         <td>Date de début</td>
                         <td>Date de fin</td>
                         <td>Inscrit</td>
-                        <td>Action</td>
                     </thead>
                     <tbody>
                         {% for session in sessions %}
+                        {% if session.getStatus == 0 %}
                         <tr>
-                            <td>En cours</td>
+                            <td>A venir</td>
                             <td>{{ session.formation.intitule }}</td>
                             <td>{{ session.intitule }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ session.place }}</td>
-                            <td>action</td>
+                            <td>{{ session.dateDebut | date('d-m-y')}}</td>
+                            <td>{{ session.dateFin | date('d-m-y') }}</td>
+                            {% if session.getParticiper is iterable %}
+                            <td>{{ session.getParticiper | length }} / {{ session.place }}</td>
+                            {% else %}
+                            <td>0 / {{ session.place }}</td>
+                            {% endif %}
                         </tr>
+                        {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -84,19 +88,23 @@
                         <td>Date de début</td>
                         <td>Date de fin</td>
                         <td>Inscrit</td>
-                        <td>Action</td>
                     </thead>
                     <tbody>
                         {% for session in sessions %}
+                        {% if session.getStatus > 0 and session.getStatus < 100  %}
                         <tr>
-                            <td>En cours</td>
+                            <td>{{ session.getStatus | round(2) }} %</td>
                             <td>{{ session.formation.intitule }}</td>
                             <td>{{ session.intitule }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ session.place }}</td>
-                            <td>action</td>
+                            <td>{{ session.dateDebut | date('d-m-y')}}</td>
+                            <td>{{ session.dateFin | date('d-m-y') }}</td>
+                            {% if session.getParticiper is iterable %}
+                            <td>{{ session.getParticiper | length }} / {{ session.place }}</td>
+                            {% else %}
+                            <td>0 / {{ session.place }}</td>
+                            {% endif %}
                         </tr>
+                        {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -117,19 +125,23 @@
                         <td>Date de début</td>
                         <td>Date de fin</td>
                         <td>Inscrit</td>
-                        <td>Action</td>
                     </thead>
                     <tbody>
                         {% for session in sessions %}
+                        {% if session.getStatus == 100 %}
                         <tr>
-                            <td>En cours</td>
+                            <td>Passé</td>
                             <td>{{ session.formation.intitule }}</td>
                             <td>{{ session.intitule }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ session.place }}</td>
-                            <td>action</td>
+                            <td>{{ session.dateDebut | date('d-m-y')}}</td>
+                            <td>{{ session.dateFin | date('d-m-y') }}</td>
+                            {% if session.getParticiper is iterable %}
+                            <td>{{ session.getParticiper | length }} / {{ session.place }}</td>
+                            {% else %}
+                            <td>0 / {{ session.place }}</td>
+                            {% endif %}
                         </tr>
+                        {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>

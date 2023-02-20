@@ -24,9 +24,11 @@ class ModulesACType extends AbstractType
 			->add('duree', NumberType::class, [
 				'label' => 'Durée (en heures)',
 				'mapped' => false,
+				'attr' => ['class' => 'calendar']
 			])
 			->add('submit', SubmitType::class, [
 				'label' => 'Ajouter Module',
+				'attr' => ['class' => 'submit']
 			]);
 	}
 

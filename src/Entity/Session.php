@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Session;
+use App\Entity\Stagiaire;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\SessionRepository;
@@ -102,10 +104,30 @@ class Session
 		return $duree->days;
 	}
 
+	public function getStatus()
+	{
+		$now = new \DateTime;
+		$status = date_diff($this->getDateDebut(), $now);
+		if($status->invert == 0){
+			$status = date_diff($this->getDateFin(), $now);
+			if($status->invert == 0){
+				return 100;
+			}else{
+				$total = date_diff($this->getDateDebut(), $this->getDatefin());
+				$time = $total->days - $status->days;
+				$total = 100 - ( ($total->days - $time) / $time * 100 );
+				return $total;
+			}
+		}else{
+			return 0;
+		}
+		return 999;
+	}
+
 	public function addSession(ManagerRegistry $doctrine, Session $session): self
 	{
 		$em = $doctrine->getManager();
-		$$session = new Session($session);
+		$session = new Session($session);
 		$em->persist($session);
 		$em->flush();
 

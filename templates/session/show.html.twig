@@ -72,8 +72,10 @@ block body %}
 <div class="ctn-tab">
   <div class="titre">Ajouter Programme</div>
   {{ form_start(formModulesAC) }}
-  <div class="search">
-    {{ form_row(formModulesAC, { label: false }) }}
+  <div class="search flex-ctn f-center">
+    {{ form_row(formModulesAC.module, { label: false }) }}
+    {{ form_row(formModulesAC.duree, { label: false }) }}
+    {{ form_row(formModulesAC.submit) }}
   </div>
   {{ form_end(formModulesAC) }}
 </div>
