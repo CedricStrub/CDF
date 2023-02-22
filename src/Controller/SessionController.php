@@ -13,13 +13,30 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
 	#[Route('/session', name: 'app_session')]
-	public function index(ManagerRegistry $doctrine): Response
+	public function index(ManagerRegistry $doctrine, Request $request): Response
 	{
+		$form = $this->createFormBuilder()
+			->add('session', EntityType::class, [
+				'class' => Session::class,
+				'autocomplete' => true,
+				'attr' => ['class' => 'bar']
+			])
+			->getForm();
+
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$id = $form->get('session')->getData()->getId();
+			return $this->redirectToRoute('show_session',['id' => $id]);
+		}
+
+
 		$sessions = $doctrine->getRepository(Session::class)->findAll();
 
 		$data = [];
@@ -46,6 +63,7 @@ class SessionController extends AbstractController
 			'controller_name' => 'SessionController',
 			'sessions' => $sessions,
 			'data' => $data,
+			'form' => $form
 		]);
 	}
 

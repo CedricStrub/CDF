@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FormationController extends AbstractController
 {
 	#[Route('/formation', name: 'app_formation')]
-	public function index(ManagerRegistry $doctrine): Response
+	public function index(ManagerRegistry $doctrine, Request $request): Response
 	{
 		$formations = $doctrine->getRepository(Formation::class)->findAll();
 
@@ -28,6 +28,13 @@ class FormationController extends AbstractController
 				'attr' => ['class' => 'bar']
 			])
 			->getForm();
+
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$id = $form->get('formation')->getData()->getId();
+			return $this->redirectToRoute('show_formation',['id' => $id]);
+		}
 
 		$data = [];
 

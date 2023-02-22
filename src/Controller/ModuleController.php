@@ -11,18 +11,35 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ModuleController extends AbstractController
 {
 	#[Route('/module', name: 'app_module')]
-	public function index(ManagerRegistry $doctrine): Response
+	public function index(ManagerRegistry $doctrine, Request $request): Response
 	{
+		$form = $this->createFormBuilder()
+			->add('module', EntityType::class, [
+				'class' => Modules::class,
+				'autocomplete' => true,
+				'attr' => ['class' => 'bar']
+			])
+			->getForm();
+
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$id = $form->get('module')->getData()->getId();
+			return $this->redirectToRoute('show_module',['id' => $id]);
+		}
+
 		$modules = $doctrine->getRepository(Modules::class)->findAll();
 
 		return $this->render('module/index.html.twig', [
 			'controller_name' => 'ModuleController',
 			'modules' => $modules,
+			'form' => $form
 		]);
 	}
 

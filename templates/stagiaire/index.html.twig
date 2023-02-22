@@ -5,12 +5,19 @@
 {% block body %}
 
 <link rel="stylesheet" href={{ asset("/formation.css") }}>
+<link rel="stylesheet" href="{{ asset('css/custom_autocomplete.css') }}">
+
 <div class="forma">
     <div class="title-ctn">
         <div class="title">Stagiaires</div>
     </div>
     <div class="search-ctn">
         <div class="titre">Recherche</div>
+        {{ form_start(form) }}
+        <div class="search">
+            {{ form_row(form.stagiaire, {'label':false})}}
+        </div>
+        {{ form_end(form) }}
     </div>
     <div class="ctn-tab">
         <div class="cadre-tab">

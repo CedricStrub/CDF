@@ -10,19 +10,35 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FormateurController extends AbstractController
 {
     #[Route('/formateur', name: 'app_formateur')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine, Request $request): Response
     {
+		$form = $this->createFormBuilder()
+			->add('formateur', EntityType::class, [
+				'class' => Formateur::class,
+				'autocomplete' => true,
+				'attr' => ['class' => 'bar']
+			])
+			->getForm();
+
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$id = $form->get('formateur')->getData()->getId();
+			return $this->redirectToRoute('show_formateur',['id' => $id]);
+		}
 
         $formateurs = $doctrine->getRepository(Formateur::class)->findAll();
 
         return $this->render('formateur/index.html.twig', [
             'controller_name' => 'FormateurController',
             'formateurs' => $formateurs,
+			'form' => $form,
         ]);
     }
 

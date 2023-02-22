@@ -10,18 +10,35 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StagiaireController extends AbstractController
 {
 	#[Route('/stagiaire', name: 'app_stagiaire')]
-	public function index(ManagerRegistry $doctrine): Response
+	public function index(ManagerRegistry $doctrine, Request $request): Response
 	{
+		$form = $this->createFormBuilder()
+			->add('stagiaire', EntityType::class, [
+				'class' => Stagiaire::class,
+				'autocomplete' => true,
+				'attr' => ['class' => 'bar']
+			])
+			->getForm();
+
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$id = $form->get('stagiaire')->getData()->getId();
+			return $this->redirectToRoute('show_stagiaire',['id' => $id]);
+		}
+
 		$stagiaires = $doctrine->getRepository(Stagiaire::class)->findAll();
 
 		return $this->render('stagiaire/index.html.twig', [
 			'controller_name' => 'StagiaireController',
 			'stagiaires' => $stagiaires,
+			'form' => $form,
 		]);
 	}
 
