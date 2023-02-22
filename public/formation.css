@@ -172,3 +172,16 @@ tbody{
     padding-left: 15px;
     line-height: 150%;
 }
+
+a{
+    text-decoration: none;
+}
+
+.link{
+    color: var(--txt-high);
+    text-decoration: none;
+}
+
+tr:not(.action):hover{
+    background-color: var(--tab-brd);
+}

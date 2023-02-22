@@ -6,65 +6,35 @@
 <link rel="stylesheet" href={{ asset("/home.css") }}>
 <div class ="home">
     <div class="ctn1"><div class="cadre">Bonjour </div></div>
-    <div class="ctn2"><div class="cadre">{{ app.user.email }}</div></div>
-    <div class="ctn-tab">
-        <div class="cadre-tab">
-            <div class="titre">Planing</div>
-            <div class="plan">
-                <table>
-                    <thead>
-                        <td>Lundi</td>
-                        <td>Mardi</td>
-                        <td>Mercredi</td>
-                        <td>Jeudi</td>
-                        <td>Vendredi</td>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+    <div class="ctn2"><div class="cadre">{{ app.user.formateur.prenom }}</div></div>
     <div class="ctn-tab">
         <div class="cadre-tab">
             <div class="titre">Session à venir</div>
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Statut</td>
-                        <td>Formation</td>
-                        <td>Session</td>
-                        <td>Date de début</td>
-                        <td>Date de fin</td>
-                        <td>Inscrit</td>
+                        <tr class="action">
+                            <td>Statut</td>
+                            <td>Formation</td>
+                            <td>Session</td>
+                            <td>Date de début</td>
+                            <td>Date de fin</td>
+                            <td>Inscrit</td>
+                        </tr>
                     </thead>
                     <tbody>
                         {% for session in sessions %}
                         {% if session.getStatus == 0 %}
                         <tr>
-                            <td>A venir</td>
-                            <td>{{ session.formation.intitule }}</td>
-                            <td>{{ session.intitule }}</td>
-                            <td>{{ session.dateDebut | date('d-m-y')}}</td>
-                            <td>{{ session.dateFin | date('d-m-y') }}</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">A venir</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.formation.intitule }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.intitule }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.dateDebut | date('d-m-y')}}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.dateFin | date('d-m-y') }}</div></a></td>
                             {% if session.getParticiper is iterable %}
-                            <td>{{ session.getParticiper | length }} / {{ session.place }}</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.getParticiper | length }} / {{ session.place }}</div></a></td>
                             {% else %}
-                            <td>0 / {{ session.place }}</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">0 / {{ session.place }}</div></a></td>
                             {% endif %}
                         </tr>
                         {% endif %}
@@ -82,26 +52,65 @@
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Statut</td>
-                        <td>Formation</td>
-                        <td>Session</td>
-                        <td>Date de début</td>
-                        <td>Date de fin</td>
-                        <td>Inscrit</td>
+                        <tr class="action">
+                            <td>Statut</td>
+                            <td>Formation</td>
+                            <td>Session</td>
+                            <td>Date de début</td>
+                            <td>Date de fin</td>
+                            <td>Inscrit</td>
+                        </tr>
                     </thead>
                     <tbody>
                         {% for session in sessions %}
                         {% if session.getStatus > 0 and session.getStatus < 100  %}
                         <tr>
-                            <td>{{ session.getStatus | round(2) }} %</td>
-                            <td>{{ session.formation.intitule }}</td>
-                            <td>{{ session.intitule }}</td>
-                            <td>{{ session.dateDebut | date('d-m-y')}}</td>
-                            <td>{{ session.dateFin | date('d-m-y') }}</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.getStatus | round(2) }} %</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.formation.intitule }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.intitule }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.dateDebut | date('d-m-y')}}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.dateFin | date('d-m-y') }}</div></a></td>
                             {% if session.getParticiper is iterable %}
-                            <td>{{ session.getParticiper | length }} / {{ session.place }}</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.getParticiper | length }} / {{ session.place }}</div></a></td>
                             {% else %}
-                            <td>0 / {{ session.place }}</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">0 / {{ session.place }}</div></a></td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="ctn-tab">
+        <div class="cadre-tab">
+            <div class="titre">Session passé</div>
+            <div class="tab">
+                <table>
+                    <thead>
+                        <tr class="action">
+                            <td>Statut</td>
+                            <td>Formation</td>
+                            <td>Session</td>
+                            <td>Date de début</td>
+                            <td>Date de fin</td>
+                            <td>Inscrit</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for session in sessions %}
+                        {% if session.getStatus == 100 %}
+                        <tr>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">Passé</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.formation.intitule }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.intitule }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.dateDebut | date('d-m-y')}}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.dateFin | date('d-m-y') }}</div></a></td>
+                            {% if session.getParticiper is iterable %}
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.getParticiper | length }} / {{ session.place }}</div></a></td>
+                            {% else %}
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">0 / {{ session.place }}</div></a></td>
                             {% endif %}
                         </tr>
                         {% endif %}
@@ -115,40 +124,37 @@
     </div>
     <div class="ctn-tab">
         <div class="cadre-tab">
-            <div class="titre">Session passé</div>
-            <div class="tab">
+            <div class="titre">Planing</div>
+            <div class="plan">
                 <table>
                     <thead>
-                        <td>Statut</td>
-                        <td>Formation</td>
-                        <td>Session</td>
-                        <td>Date de début</td>
-                        <td>Date de fin</td>
-                        <td>Inscrit</td>
+                        <tr class="action">
+                            <td>Lundi</td>
+                            <td>Mardi</td>
+                            <td>Mercredi</td>
+                            <td>Jeudi</td>
+                            <td>Vendredi</td>
+                        </tr>
                     </thead>
                     <tbody>
-                        {% for session in sessions %}
-                        {% if session.getStatus == 100 %}
-                        <tr>
-                            <td>Passé</td>
-                            <td>{{ session.formation.intitule }}</td>
-                            <td>{{ session.intitule }}</td>
-                            <td>{{ session.dateDebut | date('d-m-y')}}</td>
-                            <td>{{ session.dateFin | date('d-m-y') }}</td>
-                            {% if session.getParticiper is iterable %}
-                            <td>{{ session.getParticiper | length }} / {{ session.place }}</td>
-                            {% else %}
-                            <td>0 / {{ session.place }}</td>
-                            {% endif %}
+                        <tr class="action">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
-                        {% endif %}
-                        {% endfor %}
+                        <tr class="action">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            
         </div>
-        
     </div>
 </div>
 

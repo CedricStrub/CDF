@@ -229,3 +229,17 @@ tbody{
 .submit:hover{
     color: var(--txt-high);
 }
+
+a{
+    text-decoration: none;
+    color: var(--pri);
+}
+
+.link{
+    color: var(--txt-high);
+    text-decoration: none;
+}
+
+tr:not(.action):hover{
+    background-color: var(--tab-brd);
+}

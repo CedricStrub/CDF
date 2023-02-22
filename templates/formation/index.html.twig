@@ -25,25 +25,27 @@
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Intitulé</td>
-                        <td>nb Sessions</td>
-                        <td>nb Modules</td>
-                        <td>Durée Total</td>
-                        <td>Place</td>
-                        <td>Progression</td>
+                        <tr class="action">
+                            <td>Intitulé</td>
+                            <td>nb Sessions</td>
+                            <td>nb Modules</td>
+                            <td>Durée Total</td>
+                            <td>Place</td>
+                            <td>Progression</td>
+                        </tr>
                     </thead>
                     <tbody>
                     {% set i = 0 %}
                     {% for formation in formations %}
                         <tr>
-                            <td><a href="{{ path('show_formation', {'id': formation.id }) }}">{{ formation }}</a></td>
-                            <td>{{ data[i].nbSession }}</td>
-                            <td>{{ data[i].nbModules }}</td>
-                            <td>{{ data[i].duree }} Jours</td>
-                            <td>{{ data[i].placesV }} / {{ data[i].placesT }}</td>
-                            <td>{{ data[i].progression }}</td>
+                            <td><a href="{{ path('show_formation', {'id': formation.id }) }}"> <div class="link"> {{ formation }}</div></a></td>
+                            <td><a href="{{ path('show_formation', {'id': formation.id }) }}"> <div class="link"> {{ data[i].nbSession }}</div></a></td>
+                            <td><a href="{{ path('show_formation', {'id': formation.id }) }}"> <div class="link"> {{ data[i].nbModules }}</div></a></td>
+                            <td><a href="{{ path('show_formation', {'id': formation.id }) }}"> <div class="link"> {{ data[i].duree }} Jours</div></a></td>
+                            <td><a href="{{ path('show_formation', {'id': formation.id }) }}"> <div class="link"> {{ data[i].placesV }} / {{ data[i].placesT }}</div></a></td>
+                            <td><a href="{{ path('show_formation', {'id': formation.id }) }}"> <div class="link"> {{ data[i].progression | round(2) }}</div></a></td>
                         </tr>
-                        {% set i = i + 1 %}
+                    {% set i = i + 1 %}
                     {% endfor %}
                     </tbody>
                 </table>

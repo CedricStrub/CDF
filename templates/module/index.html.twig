@@ -15,15 +15,17 @@
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Intitulé</td>
-                        <td>Categorie</td>
+                        <tr class="action">
+                            <td>Intitulé</td>
+                            <td>Categorie</td>
+                        </tr>
                     </thead>
                     <tbody>
                     {% for module in modules %}
                         <tr>
-                            <td><a href="{{ path('show_module', {'id': module.id}) }}">{{ module.nom }}</a></td>
+                            <td><a href="{{ path('show_module', {'id': module.id}) }}"><div class="link"> {{ module.nom }}</div></a></td>
                             {% if module.categorie.nom is defined %}
-                            <td><a href="{{ path('show_module', {'id': module.id}) }}">{{ module.categorie.nom }}</a></td>
+                            <td><a href="{{ path('show_module', {'id': module.id}) }}"><div class="link">{{ module.categorie.nom }}</div></a></td>
                             {% else %}
                             <td>aucune</td>
                             {% endif %}

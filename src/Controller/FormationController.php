@@ -45,6 +45,7 @@ class FormationController extends AbstractController
 			foreach ($sessions as $session) {
 				$modules = $doctrine->getRepository(Programme::class)->findBy(['session' => $session->getId()]);
 
+				$progression += $session->getStatus();
 				if ($session->getPlace() < $places) {
 					$places = $session->getPlace();
 				}
@@ -66,17 +67,15 @@ class FormationController extends AbstractController
 			$ctnStagiaire = $places - count($stagiaire);
 
 
-			if ($dateD > $date) {
-				$percent = (($date->diff($dateD)->d) + ($dateF->diff($date)->d)) / 100;
-
-				$progression = ($date->diff($dateD)->d) / $percent;
-			}
 			
 			if($modules)
 				$modules = count($modules);
 			else
 				$modules = 0;
 			$sessions = count($sessions);
+
+			if($progression != 0)
+				$progression = $progression / $sessions;
 
 			$d = [
 				'nbSession' => $sessions,
@@ -149,6 +148,8 @@ class FormationController extends AbstractController
 		foreach ($sessions as $session) {
 			$modules = $doctrine->getRepository(Programme::class)->findBy(['session' => $session->getId()]);
 
+			$progression += $session->getStatus();
+
 			if ($session->getPlace() < $places) {
 				$places = $session->getPlace();
 			}
@@ -169,15 +170,11 @@ class FormationController extends AbstractController
 
 		$ctnStagiaire = $places - count($stagiaire);
 
-
-		if ($dateD > $date) {
-			$percent = (($date->diff($dateD)->d) + ($dateF->diff($date)->d)) / 100;
-
-			$progression = ($date->diff($dateD)->d) / $percent;
-		}
-
 		$modulesC = count($modules);
 		$sessionsC = count($sessions);
+
+		if($progression != 0)
+				$progression = $progression / $sessionsC;
 
 		$data = [
 			'nbSession' => $sessionsC,

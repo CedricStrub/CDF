@@ -15,21 +15,23 @@
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Intitulé</td>
-                        <td>Date de Début</td>
-                        <td>Date de Fin</td>
-                        <td>Places</td>
+                        <tr class="action">
+                            <td>Intitulé</td>
+                            <td>Date de Début</td>
+                            <td>Date de Fin</td>
+                            <td>Places</td>
+                        </tr>
                     </thead>
                     <tbody>
                     {% for session in sessions %}
                         <tr>
-                            <td><a href="{{ path('show_session', {'id': session.id }) }}">{{ session }}</a></td>
-                            <td>{{ session.dateDebut | date("d-m-Y") }}</td>
-                            <td>{{ session.dateFin | date("d-m-Y") }}</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.dateDebut | date("d-m-Y") }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.dateFin | date("d-m-Y") }}</div></a></td>
                             {% if session.getParticiper is iterable %}
-                            <td>{{ session.getParticiper | length }} / {{ session.place }}</td>
+                                <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session.getParticiper | length }} / {{ session.place }}</div></a></td>
                             {% else %}
-                            <td>0 / {{ session.place }}</td>
+                                <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">0 / {{ session.place }}</div></a></td>
                             {% endif %}
                         </tr>
                     {% endfor %}

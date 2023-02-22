@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FormateurController!{% endblock %}
+{% block title %}Detail Formateur{% endblock %}
 
 {% block body %}
 
@@ -15,19 +15,21 @@
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Intitulé</td>
-                        <td>Date de Début</td>
-                        <td>Date de Fin</td>
-                        <td>Places</td>
+                        <tr class="action">
+                            <td>Intitulé</td>
+                            <td>Date de Début</td>
+                            <td>Date de Fin</td>
+                            <td>Places</td>
+                        </tr>
                     </thead>
                     <tbody>
                     {% set i = 0 %}
                     {% for session in sessions %}
                         <tr>
-                            <td><a href="{{ path('show_session', {'id': session.id }) }}">{{ session }}</a></td>
-                            <td>{{ data[i].dateDebut | date("d-m-Y") }}</td>
-                            <td>{{ data[i].dateFin | date("d-m-Y") }}</td>
-                            <td>{{ data[i].placeL }} / {{ data[i].place }}</td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ session }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ data[i].dateDebut | date("d-m-Y") }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ data[i].dateFin | date("d-m-Y") }}</div></a></td>
+                            <td><a href="{{ path('show_session', {'id': session.id }) }}"><div class="link">{{ data[i].placeL }} / {{ data[i].place }}</div></a></td>
                         </tr>
                         {% set i = i + 1 %}
                     {% endfor %}

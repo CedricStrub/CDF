@@ -1,5 +1,8 @@
-{% extends 'base.html.twig' %} {% block title %}Detail Session{% endblock %} {%
-block body %}
+{% extends 'base.html.twig' %} 
+
+{% block title %}Detail Session{% endblock %} 
+
+{%block body %}
 
 <link rel="stylesheet" href="{{ asset('css/custom_autocomplete.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/detailSession.css') }}" />
@@ -40,17 +43,23 @@ block body %}
 <div class="titre">Programme</div>
   <table>
     <thead>
-      <td>Module</td>
-      <td>Catégorie</td>
-      <td>Durée</td>
-      <td>Action</td>
+      <tr class="action">
+        <td>Module</td>
+        <td>Catégorie</td>
+        <td>Durée</td>
+        <td>Action</td>
+      </tr>
     </thead>
     <tbody>
       {% for programme in programmes %}
       <tr>
-        <td>{{ programme.module.nom }}</td>
-        <td>{{ programme.module.categorie.nom }}</td>
-        <td>{{ programme.duree }} Jours</td>
+        <td><a href="{{ path('show_module', {'id': programme.module.id }) }}"> <div class="link">{{ programme.module.nom }}</div></a></td>
+        {% if programme.module.categorie.nom is defined %}
+        <td><a href="{{ path('show_module', {'id': programme.module.id}) }}"><div class="link">{{ programme.module.categorie.nom }}</div></a></td>
+        {% else %}
+        <td><div class="link">aucune</div></td>
+        {% endif %}
+        <td><a href="{{ path('show_module', {'id': programme.module.id}) }}"><div class="link">{{ programme.duree }} Jours</div></a></td>
         <td>
           <a
             href="{{
@@ -84,13 +93,15 @@ block body %}
   <div class="titre">Stagiaire</div>
   <table>
     <thead>
-      <td>Stagiaire</td>
-      <td>Action</td>
+      <tr class="action">
+        <td>Stagiaire</td>
+        <td>Action</td>
+      </tr>
     </thead>
     <tbody>
       {% for stagiaire in stagiaires %}
       <tr>
-        <td>{{ stagiaire.prenom }} - {{ stagiaire.nom }}</td>
+        <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id }) }}"> <div class="link">{{ stagiaire.prenom }} - {{ stagiaire.nom }}</div></a></td>
         <td>
           <a
             href="{{

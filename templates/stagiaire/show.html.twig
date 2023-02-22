@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Stagiaire{% endblock %}
+{% block title %}Detail Stagiaire{% endblock %}
 
 {% block body %}
 <link rel="stylesheet" href="{{ asset('css/detailStagiaire.css') }}" />
@@ -36,20 +36,22 @@
     <div class="titre">Sessions</div>
     <table>
         <thead>
-            <td>Intitule</td>
-            <td>Formateur</td>
-            <td>Date de Debut</td>
-            <td>Date de Fin</td>
-            <td>Places </td>
+            <tr class="action">
+                <td>Intitule</td>
+                <td>Formateur</td>
+                <td>Date de Debut</td>
+                <td>Date de Fin</td>
+                <td>Places </td>
+            </tr>
         </thead>
         <tbody>
             {% for session in sessions %}
             <tr>
-                <td>{{ session.intitule }}</td>
-                <td>{{ session.formateur }}</td>
-                <td>{{ session.dateDebut | date("d-m-Y") }}</td>
-                <td>{{ session.dateFin | date("d-m-Y") }}</td>
-                <td>{{ session.place }}</td>
+                <td><a href="{{ path('show_session', {'id': session.id}) }}"><div class="link">{{ session.intitule }}</div></a></td>
+                <td><a href="{{ path('show_session', {'id': session.id}) }}"><div class="link">{{ session.formateur }}</div></a></td>
+                <td><a href="{{ path('show_session', {'id': session.id}) }}"><div class="link">{{ session.dateDebut | date("d-m-Y") }}</div></a></td>
+                <td><a href="{{ path('show_session', {'id': session.id}) }}"><div class="link">{{ session.dateFin | date("d-m-Y") }}</div></a></td>
+                <td><a href="{{ path('show_session', {'id': session.id}) }}"><div class="link">{{ session.place }}</div></a></td>
             </tr>
             {% endfor %}
         </tbody>

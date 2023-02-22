@@ -18,24 +18,26 @@
             <div class="tab">
                 <table>
                     <thead>
-                        <td>Nom</td>
-                        <td>Prenom</td>
-                        <td>E-mail</td>
-                        <td>Date de Naissance</td>
-                        <td>Sexe</td>
-                        <td>Telephone</td>
-                        <td>Ville</td>
+                        <tr class="action">
+                            <td>Nom</td>
+                            <td>Prenom</td>
+                            <td>E-mail</td>
+                            <td>Date de Naissance</td>
+                            <td>Sexe</td>
+                            <td>Telephone</td>
+                            <td>Ville</td>
+                        </tr>
                     </thead>
                     <tbody>
                     {% for stagiaire in stagiaires %}
                         <tr>
-                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom }}</a></td>
-                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.prenom }}</a></td>
-                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.email }}</a></td>
-                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.dateNaissance | date("d-m-Y") }}</a></td>
-                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.sexe }}</a></td>
-                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.telephone }}</a></td>
-                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.ville }}</a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}"><div class="link">{{ stagiaire.nom }}</div></a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}"><div class="link">{{ stagiaire.prenom }}</div></a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}"><div class="link">{{ stagiaire.email }}</div></a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}"><div class="link">{{ stagiaire.dateNaissance | date("d-m-Y") }}</div></a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}"><div class="link">{{ stagiaire.sexe }}</div></a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}"><div class="link">{{ stagiaire.telephone }}</div></a></td>
+                            <td><a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}"><div class="link">{{ stagiaire.ville }}</div></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
